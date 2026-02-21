@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Futaba — LoL 对局分析助手</title>
+  <meta name="description" content="Futaba 是一款英雄联盟对局分析助手，集成 OP.GG 数据查询、AI 战术分析和游戏内悬浮窗。基于 Tauri + Rust + React 构建，支持桌面端与移动端双端操作。" />
+
+  <!-- FOUC Prevention: apply theme before any rendering -->
+  <script>
+    (function() {
+      var t;
+      try { t = localStorage.getItem('futaba-static-theme'); } catch(e) {}
+      t = t || 'clean-light';
+      var r = document.documentElement;
+      if (t === 'clean-light') {
+        r.className = 'theme-clean';
+        r.style.backgroundColor = '#f8fafc';
+      } else if (t === 'clean-dark') {
+        r.className = 'theme-clean dark';
+        r.style.backgroundColor = '#0f172a';
+      } else {
+        r.className = 'theme-persona5';
+        r.style.backgroundColor = '#0d0d0d';
+      }
+    })();
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            p5: {
+              red: '#ff0000',
+              'red-dark': '#cc0000',
+              'red-light': '#ff3333',
+              black: '#0d0d0d',
+              'black-light': '#1a1a1a',
+              white: '#ffffff',
+            },
+            clean: {
+              primary: '#3b82f6',
+              'primary-dark': '#2563eb',
+              secondary: '#64748b',
+              background: '#f8fafc',
+              'background-dark': '#0f172a',
+              surface: '#ffffff',
+              'surface-dark': '#1e293b',
+              border: '#e2e8f0',
+              'border-dark': '#334155',
+            },
+          },
+          fontFamily: {
+            p5: ['"Bebas Neue"', 'Impact', 'sans-serif'],
+            clean: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="./css/themes.css" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="./assets/logo.png" type="image/png" />
+</head>
+<body class="min-h-screen overflow-x-hidden">
+
+  <!-- Language Switcher -->
+  <div class="lang-switcher" id="langSwitcher">
+    <button data-lang="zh" class="active">中</button>
+    <button data-lang="en">EN</button>
+    <button data-lang="ja">日</button>
+  </div>
+
+  <!-- ========================
+       HERO SECTION
+       ======================== -->
+  <section id="hero" class="relative px-6 pt-16 sm:pt-24 pb-12 overflow-hidden">
+    <!-- P5 Decorations (visible only in P5 theme) -->
+    <div class="hero-decoration hero-decoration-1"></div>
+    <div class="hero-decoration hero-decoration-2"></div>
+    <div class="hero-decoration hero-decoration-3"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 text-center">
+      <!-- Logo + Title — fixed min-h to prevent layout shift across fonts -->
+      <div class="mb-6 min-h-[200px] sm:min-h-[230px] flex flex-col justify-center">
+        <img src="./assets/logo.png" alt="Futaba Logo" class="w-20 h-20 mx-auto rounded-2xl mb-5" />
+        <h1 class="p5-title clean-title text-4xl sm:text-5xl md:text-6xl mb-3 p5-glitch" data-text="FUTABA">
+          FUTABA
+        </h1>
+        <p class="p5-subtitle clean-subtitle text-base sm:text-lg max-w-xl mx-auto" data-i18n="hero.subtitle">
+          LoL 对局分析助手 — 实时数据 · OP.GG 集成 · AI 战术分析
+        </p>
+      </div>
+
+      <!-- CTA Buttons — fixed min-h to prevent layout shift across fonts -->
+      <div class="flex flex-col sm:flex-row gap-3 justify-center items-center mb-12 sm:mb-16 min-h-[52px]">
+        <a href="https://github.com/adv-inn/futaba/releases" class="p5-button clean-button text-base">
+          <span>Download</span>
+        </a>
+        <a href="https://github.com/adv-inn/futaba" class="p5-button-outline clean-button-outline text-base flex items-center gap-2">
+          <span>
+            <svg class="w-5 h-5 inline-block -mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            GitHub
+          </span>
+        </a>
+      </div>
+
+      <!-- Preview (integrated) -->
+      <div class="max-w-5xl mx-auto">
+        <div class="cascade-wrapper">
+          <button class="cascade-nav cascade-nav-prev" id="cascadePrev" aria-label="上一个主题">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <div class="cascade-container">
+            <div class="cascade-card" data-theme="light" data-switch="clean-light">
+              <img src="./assets/light.png" alt="Clean Light 主题预览" draggable="false" />
+              <span class="cascade-label">Light</span>
+            </div>
+            <div class="cascade-card" data-theme="dark" data-switch="clean-dark">
+              <img src="./assets/dark.png" alt="Clean Dark 主题预览" draggable="false" />
+              <span class="cascade-label">Dark</span>
+            </div>
+            <div class="cascade-card" data-theme="p5" data-switch="persona5">
+              <img src="./assets/p5.png" alt="Persona 5 主题预览" draggable="false" />
+              <span class="cascade-label">P5</span>
+            </div>
+          </div>
+          <button class="cascade-nav cascade-nav-next" id="cascadeNext" aria-label="下一个主题">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       FEATURES SECTION
+       ======================== -->
+  <section id="features" class="py-20 sm:py-28 px-6">
+    <div class="max-w-6xl mx-auto">
+      <!-- Section Title -->
+      <div class="text-center mb-16 scroll-reveal">
+        <h2 class="p5-section-title clean-section-title text-3xl sm:text-4xl mb-4" data-i18n="features.title">Features</h2>
+        <p class="p5-subtitle clean-subtitle mt-6 text-base max-w-2xl mx-auto" data-i18n="features.subtitle">
+          从选人阶段到对局结束，全流程智能辅助
+        </p>
+      </div>
+
+      <!-- Feature Cards Grid (3x3) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+
+        <!-- Feature 1: Auto Accept -->
+        <div class="p5-card clean-card p-6 scroll-reveal delay-1">
+          <div class="text-3xl mb-4">
+            <svg class="w-10 h-10" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);" data-i18n="feature.accept.title">自动接受对局</h3>
+          <p style="color: var(--text-secondary);" class="text-sm leading-relaxed" data-i18n="feature.accept.desc">
+            匹配成功后自动接受对局，无需手动操作，再也不会错过匹配
+          </p>
+        </div>
+
+        <!-- Feature 2: Match History -->
+        <div class="p5-card clean-card p-6 scroll-reveal delay-2">
+          <div class="text-3xl mb-4">
+            <svg class="w-10 h-10" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);" data-i18n="feature.history.title">战绩查询</h3>
+          <p style="color: var(--text-secondary);" class="text-sm leading-relaxed" data-i18n="feature.history.desc">
+            查看详细对局历史记录，包括KDA、伤害数据和装备详情
+          </p>
+        </div>
+
+        <!-- Feature 3: Friends -->
+        <div class="p5-card clean-card p-6 scroll-reveal delay-3">
+          <div class="text-3xl mb-4">
+            <svg class="w-10 h-10" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);" data-i18n="feature.friends.title">好友交互</h3>
+          <p style="color: var(--text-secondary);" class="text-sm leading-relaxed" data-i18n="feature.friends.desc">
+            聊天、邀请好友组队、预约邀请，社交功能一应俱全
+          </p>
+        </div>
+
+        <!-- Feature 4: OP.GG Integration -->
+        <div class="p5-card clean-card p-6 scroll-reveal delay-1">
+          <div class="text-3xl mb-4">
+            <svg class="w-10 h-10" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);" data-i18n="feature.opgg.title">OP.GG 集成</h3>
+          <p style="color: var(--text-secondary);" class="text-sm leading-relaxed" data-i18n="feature.opgg.desc">
+            自动应用版本强势出装、符文和召唤师技能，支持排位、大乱斗、斗魂竞技场等多模式
+          </p>
+        </div>
+
+        <!-- Feature 5: Counter Pick -->
+        <div class="p5-card clean-card p-6 scroll-reveal delay-2">
+          <div class="text-3xl mb-4">
+            <svg class="w-10 h-10" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);" data-i18n="feature.counter.title">Counter 对位分析</h3>
+          <p style="color: var(--text-secondary);" class="text-sm leading-relaxed" data-i18n="feature.counter.desc">
+            自动计算选中英雄的克制与被克制关系，经典模式下展示对位推荐
+          </p>
+        </div>
+
+        <!-- Feature 6: AI Analysis -->
+        <div class="p5-card clean-card p-6 scroll-reveal delay-3">
+          <div class="text-3xl mb-4">
+            <svg class="w-10 h-10" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);" data-i18n="feature.ai.title">AI 智能分析</h3>
+          <p style="color: var(--text-secondary);" class="text-sm leading-relaxed" data-i18n="feature.ai.desc">
+            AI 实时局势分析与出装推荐，对局结束后提供复盘评价与改进建议
+          </p>
+        </div>
+
+        <!-- Feature 7: Auto Apply -->
+        <div class="p5-card clean-card p-6 scroll-reveal delay-1">
+          <div class="text-3xl mb-4">
+            <svg class="w-10 h-10" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182M21.015 4.356v4.992" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);" data-i18n="feature.auto.title">自动应用</h3>
+          <p style="color: var(--text-secondary);" class="text-sm leading-relaxed" data-i18n="feature.auto.desc">
+            选人阶段自动应用符文、召唤师技能和装备集，告别手动配置
+          </p>
+        </div>
+
+        <!-- Feature 8: In-Game Overlay -->
+        <div class="p5-card clean-card p-6 scroll-reveal delay-2">
+          <div class="text-3xl mb-4">
+            <svg class="w-10 h-10" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);" data-i18n="feature.overlay.title">游戏内悬浮窗</h3>
+          <p style="color: var(--text-secondary);" class="text-sm leading-relaxed" data-i18n="feature.overlay.desc">
+            透明无边框悬浮窗覆盖在游戏画面上，快捷键一键切换，不影响游戏操作
+          </p>
+        </div>
+
+        <!-- Feature 9: Mobile Support -->
+        <div class="p5-card clean-card p-6 scroll-reveal delay-3">
+          <div class="text-3xl mb-4">
+            <svg class="w-10 h-10" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);" data-i18n="feature.mobile.title">移动端支持</h3>
+          <p style="color: var(--text-secondary);" class="text-sm leading-relaxed" data-i18n="feature.mobile.desc">
+            局域网数据共享，手机扫码即可操控选人、查看出装和海克斯推荐
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       SHOWCASE: MAIN APP
+       ======================== -->
+  <section id="showcase-app" class="py-20 sm:py-28 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12 scroll-reveal">
+        <h2 class="p5-section-title clean-section-title text-3xl sm:text-4xl mb-4" data-i18n="showcase.app.title">主程序</h2>
+        <p class="p5-subtitle clean-subtitle mt-6 text-base max-w-2xl mx-auto" data-i18n="showcase.app.subtitle">
+          启动英雄联盟客户端后，使用 Futaba 接管所有其他功能
+        </p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 scroll-reveal delay-1">
+        <div class="showcase-img">
+          <img src="./assets/create-room.png" alt="创建房间" loading="lazy" />
+        </div>
+        <div class="showcase-img">
+          <img src="./assets/history.png" alt="战绩查询" loading="lazy" />
+        </div>
+        <div class="showcase-img">
+          <img src="./assets/rank-bp.png" alt="排位 Ban/Pick" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       SHOWCASE: OP.GG
+       ======================== -->
+  <section id="showcase-opgg" class="py-20 sm:py-28 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12 scroll-reveal">
+        <h2 class="p5-section-title clean-section-title text-3xl sm:text-4xl mb-4" data-i18n="showcase.opgg.title">OP.GG 集成</h2>
+        <p class="p5-subtitle clean-subtitle mt-6 text-base max-w-2xl mx-auto" data-i18n="showcase.opgg.subtitle">
+          自动应用版本强势装备与符文，经典模式展示 Counter 对位推荐，大乱斗展示海克斯强化
+        </p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 scroll-reveal delay-1">
+        <div class="showcase-img">
+          <img src="./assets/opgg-tier.png" alt="OP.GG 梯队" loading="lazy" />
+        </div>
+        <div class="showcase-img">
+          <img src="./assets/opgg-detail.png" alt="OP.GG 详情" loading="lazy" />
+        </div>
+        <div class="showcase-img">
+          <img src="./assets/counter-show.png" alt="Counter 对位" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       SHOWCASE: MOBILE
+       ======================== -->
+  <section id="showcase-mobile" class="py-20 sm:py-28 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12 scroll-reveal">
+        <h2 class="p5-section-title clean-section-title text-3xl sm:text-4xl mb-4" data-i18n="showcase.mobile.title">移动端</h2>
+        <p class="p5-subtitle clean-subtitle mt-6 text-base max-w-2xl mx-auto" data-i18n="showcase.mobile.subtitle">
+          局域网内扫码访问，接受对局、抢英雄、查出装，拿外卖上厕所也不耽误
+        </p>
+      </div>
+
+      <!-- Network Server Screenshot (wide) -->
+      <div class="max-w-3xl mx-auto mb-8 scroll-reveal delay-1">
+        <div class="showcase-img">
+          <img src="./assets/network-server.png" alt="局域网服务" loading="lazy" />
+        </div>
+      </div>
+
+      <!-- Mobile UI Screenshots -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 scroll-reveal delay-2">
+        <div class="showcase-img">
+          <img src="./assets/mobile-create-room.png" alt="移动端创建房间" loading="lazy" />
+        </div>
+        <div class="showcase-img">
+          <img src="./assets/mobile-bp.png" alt="移动端 Ban/Pick" loading="lazy" />
+        </div>
+        <div class="showcase-img">
+          <img src="./assets/mobile-chat.png" alt="移动端聊天" loading="lazy" />
+        </div>
+        <div class="showcase-img">
+          <img src="./assets/mobile-opgg.png" alt="移动端 OP.GG" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       TECH STACK SECTION
+       ======================== -->
+  <section id="tech" class="py-20 sm:py-28 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <!-- Section Title -->
+      <div class="mb-16 scroll-reveal">
+        <h2 class="p5-section-title clean-section-title text-3xl sm:text-4xl mb-4" data-i18n="tech.title">Tech Stack</h2>
+        <p class="p5-subtitle clean-subtitle mt-6 text-base" data-i18n="tech.subtitle">
+          现代技术栈，原生性能
+        </p>
+      </div>
+
+      <!-- Tech Badges -->
+      <div class="flex flex-wrap justify-center gap-4 scroll-reveal delay-1">
+        <!-- Tauri -->
+        <div class="p5-badge clean-badge px-6 py-3 flex items-center gap-3">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M13.94 2.265c2.986.494 5.417 2.562 6.381 5.318a5.19 5.19 0 0 1 1.81 3.067c.478 2.553-.649 5.109-2.8 6.535a8.718 8.718 0 0 1-5.391 4.55 5.19 5.19 0 0 1-3.55.42c-1.395-.305-2.553-1.181-3.27-2.35a8.718 8.718 0 0 1-1.2-6.812 5.09 5.09 0 0 1-.84-1.98c-.478-2.553.65-5.109 2.801-6.535a8.718 8.718 0 0 1 5.391-4.55 5.19 5.19 0 0 1 2.669.337zm-2.1 1.49a3.88 3.88 0 0 0-1.55.26 7.52 7.52 0 0 0-4.47 3.78c-1.47 1.02-2.2 2.72-1.88 4.38a3.8 3.8 0 0 0 .77 1.58 7.52 7.52 0 0 0 .96 5.69 3.88 3.88 0 0 0 5.38 1.44 7.52 7.52 0 0 0 4.47-3.78c1.47-1.02 2.2-2.72 1.88-4.38a3.8 3.8 0 0 0-.77-1.58 7.52 7.52 0 0 0-.96-5.69 3.88 3.88 0 0 0-3.83-1.7zM8.67 14.83a2.3 2.3 0 1 1 .46 1.56 2.28 2.28 0 0 1-.46-1.56zm4.2-7.22a2.3 2.3 0 1 1 .46 1.56 2.28 2.28 0 0 1-.46-1.56z"/>
+          </svg>
+          <span class="text-sm font-semibold">Tauri 2.0</span>
+        </div>
+
+        <!-- Rust -->
+        <div class="p5-badge clean-badge px-6 py-3 flex items-center gap-3">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M23.835 11.703a1.106 1.106 0 0 0-.033-.16 1.1 1.1 0 0 0-.06-.143c-.013-.034-.035-.062-.052-.094a1.074 1.074 0 0 0-.085-.122c-.022-.025-.05-.045-.075-.068a1.075 1.075 0 0 0-.11-.095c-.027-.019-.057-.033-.086-.05a1.071 1.071 0 0 0-.127-.065l-.048-.023-.003-.001-1.8-.72a12.07 12.07 0 0 0-.524-1.265l1.058-1.587.003-.004a.972.972 0 0 0 .08-.165c.013-.04.015-.08.022-.12a.97.97 0 0 0 .008-.159c-.003-.04-.014-.079-.022-.12a.97.97 0 0 0-.053-.152c-.018-.035-.04-.067-.063-.1a.97.97 0 0 0-.09-.118c-.027-.027-.058-.05-.09-.075a.971.971 0 0 0-.113-.087c-.034-.019-.07-.033-.106-.048a.972.972 0 0 0-.122-.053c-.04-.012-.08-.015-.12-.022a.97.97 0 0 0-.129-.012h-.005l-1.935.004a12.045 12.045 0 0 0-.987-.945l.431-1.897.001-.005a.971.971 0 0 0-.036-.332.97.97 0 0 0-.028-.115c-.018-.037-.045-.068-.068-.103a.971.971 0 0 0-.077-.107c-.028-.03-.061-.053-.093-.08a.971.971 0 0 0-.1-.078c-.034-.022-.072-.037-.11-.054a.971.971 0 0 0-.115-.048c-.04-.01-.08-.012-.12-.017a.972.972 0 0 0-.133-.009l-.005-.001-1.907.372a12.043 12.043 0 0 0-1.262-.539L14.7 1.452l-.002-.004a.97.97 0 0 0-.153-.247c-.03-.034-.065-.06-.1-.089a.972.972 0 0 0-.238-.155c-.037-.016-.076-.023-.115-.035a.971.971 0 0 0-.298-.034h-.005l-1.935.308a12.044 12.044 0 0 0-1.345-.032L9.48.532v-.004a.971.971 0 0 0-.08-.165c-.016-.033-.04-.06-.06-.091a.97.97 0 0 0-.186-.198c-.032-.025-.067-.043-.102-.065a.971.971 0 0 0-.27-.12c-.036-.009-.073-.009-.11-.014a.97.97 0 0 0-.16-.006h-.005L6.593.34a12.048 12.048 0 0 0-1.133.561L3.943.244h-.005a.967.967 0 0 0-.289.023c-.036.011-.069.03-.104.046a.97.97 0 0 0-.24.152c-.03.027-.054.06-.08.091a.97.97 0 0 0-.134.22c-.014.036-.02.075-.03.113a.97.97 0 0 0-.016.134v.006l.18 1.93a12.043 12.043 0 0 0-.832.85L.744 3.427h-.005a.971.971 0 0 0-.159.036c-.038.014-.072.036-.108.056a.97.97 0 0 0-.205.152c-.026.028-.046.061-.069.093a.97.97 0 0 0-.105.186c-.013.036-.018.075-.026.113a.97.97 0 0 0-.008.159c.003.04.014.078.022.118a.97.97 0 0 0 .052.154c.017.035.04.066.063.099a.97.97 0 0 0 .09.118l.002.002 1.281 1.418a12.069 12.069 0 0 0-.348 1.33l-1.876.473h-.005a.971.971 0 0 0-.473.282c-.03.031-.055.065-.08.1a.971.971 0 0 0-.095.22c-.01.038-.012.077-.016.116a.97.97 0 0 0 .01.162c.007.04.022.076.034.114a.97.97 0 0 0 .074.155c.02.033.045.062.07.093a.97.97 0 0 0 .113.112l.003.002 1.6 1.126a12.067 12.067 0 0 0 .16 1.37L.765 12.9v.004a.971.971 0 0 0-.099.152c-.02.037-.032.077-.046.117a.972.972 0 0 0-.041.31c.003.04.013.078.02.117a.97.97 0 0 0 .069.22c.018.035.043.064.066.096a.97.97 0 0 0 .155.172c.03.025.065.044.099.065a.971.971 0 0 0 .14.075l.004.002 1.826.688a12.07 12.07 0 0 0 .58 1.23L2.524 17.72l-.002.004a.971.971 0 0 0-.06.28c.001.04.01.078.016.117a.97.97 0 0 0 .074.222c.018.035.043.064.066.096a.97.97 0 0 0 .303.273c.034.02.07.033.106.048a.971.971 0 0 0 .252.058h.006l1.935-.112a12.044 12.044 0 0 0 1.026.891l-.505 1.88-.001.004a.971.971 0 0 0 .026.374c.013.037.033.07.051.106a.971.971 0 0 0 .17.247c.03.03.065.054.1.08a.971.971 0 0 0 .24.138c.037.014.076.02.115.03a.97.97 0 0 0 .164.012h.005l1.897-.48a12.042 12.042 0 0 0 1.22.481l.207 1.94v.005a.97.97 0 0 0 .072.222c.018.034.044.063.068.095a.97.97 0 0 0 .203.193c.032.023.068.04.103.059a.971.971 0 0 0 .26.082c.04.005.079 0 .119-.001a.97.97 0 0 0 .161-.027l.003-.001 1.89-.62a12.042 12.042 0 0 0 1.328-.025l.918 1.716.002.004a.97.97 0 0 0 .11.152c.028.03.06.054.092.08a.97.97 0 0 0 .248.151c.036.015.075.022.113.031a.97.97 0 0 0 .291.002c.038-.007.074-.02.111-.033a.97.97 0 0 0 .212-.117c.032-.026.06-.057.088-.088a.97.97 0 0 0 .098-.138l.002-.004 1.03-1.662a12.044 12.044 0 0 0 1.16-.516l1.56.67h.005a.971.971 0 0 0 .286.024c.04-.005.077-.018.116-.028a.97.97 0 0 0 .244-.103c.032-.022.06-.05.089-.077a.97.97 0 0 0 .151-.175c.023-.034.04-.071.058-.108a.97.97 0 0 0 .047-.18c.005-.04.002-.08-.001-.12a.97.97 0 0 0-.027-.131l-.001-.005-.666-1.84a12.07 12.07 0 0 0 .792-.898l1.85.265h.005a.97.97 0 0 0 .162-.008c.039-.008.075-.025.112-.039a.97.97 0 0 0 .22-.115c.03-.024.056-.054.084-.083a.97.97 0 0 0 .119-.175c.019-.036.032-.074.045-.113a.97.97 0 0 0 .022-.177c-.001-.04-.01-.079-.016-.119a.97.97 0 0 0-.045-.136l-.002-.005-1.007-1.657a12.065 12.065 0 0 0 .406-1.305l1.902-.347h.005a.97.97 0 0 0 .148-.047c.036-.016.068-.04.101-.061a.972.972 0 0 0 .2-.175c.025-.03.043-.064.063-.097a.97.97 0 0 0 .09-.193c.011-.038.015-.078.02-.117a.97.97 0 0 0-.008-.163c-.006-.04-.02-.076-.031-.114a.97.97 0 0 0-.066-.127v-.002zm-7.556 6.69a7.074 7.074 0 0 1-1.613.914l-.087.034a7.108 7.108 0 0 1-5.24-.039 7.073 7.073 0 0 1-2.312-1.56 7.08 7.08 0 0 1-1.56-2.312 7.108 7.108 0 0 1-.039-5.24l.034-.087a7.073 7.073 0 0 1 .914-1.613l.065-.085a7.073 7.073 0 0 1 4.363-2.727h.011a7.071 7.071 0 0 1 5.108 1.148l.084.063a7.073 7.073 0 0 1 2.094 2.69l.042.09a7.073 7.073 0 0 1-.036 5.578l-.042.09a7.073 7.073 0 0 1-1.72 2.37l-.066.056z"/>
+          </svg>
+          <span class="text-sm font-semibold">Rust</span>
+        </div>
+
+        <!-- React -->
+        <div class="p5-badge clean-badge px-6 py-3 flex items-center gap-3">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.31 0-.592.06-.842.174-.95.44-1.31 1.566-1.053 3.202.112.694.365 1.466.725 2.303C3.168 8.452 1.735 10.24 1.735 12.004c0 1.763 1.432 3.554 3.2 4.994-.36.837-.613 1.61-.725 2.303-.257 1.636.103 2.763 1.053 3.202.25.114.532.174.842.174 1.345 0 3.107-.95 4.888-2.602 1.78 1.653 3.542 2.602 4.887 2.602.31 0 .592-.06.842-.174.95-.44 1.31-1.566 1.053-3.202-.112-.694-.365-1.466-.725-2.303 1.768-1.44 3.2-3.23 3.2-4.994 0-1.763-1.432-3.554-3.2-4.994.36-.837.613-1.61.725-2.303.257-1.636-.103-2.763-1.053-3.202a1.856 1.856 0 0 0-.842-.174zM7.354 3.86c.203-.026.42-.037.649-.037 1.032 0 2.424.735 3.926 2.082-1.45 1.57-2.747 3.395-3.8 5.366a24.16 24.16 0 0 0-3.15-.637c-.308-.69-.522-1.34-.612-1.905-.18-1.15.075-1.95.545-2.167a.868.868 0 0 1 .442-.102zM4.59 12.004c0-1.07.794-2.414 2.228-3.655a23.143 23.143 0 0 0 1.61 2.3 23.14 23.14 0 0 0-1.61 2.3c-1.435-1.241-2.228-2.586-2.228-3.655v.71zm2.764 5.757c.09-.565.304-1.215.612-1.905a24.16 24.16 0 0 0 3.15-.637c1.053 1.971 2.35 3.796 3.8 5.366-1.502 1.347-2.894 2.082-3.926 2.082a1.855 1.855 0 0 1-.442-.102c-.47-.217-.726-1.018-.545-2.167a6.103 6.103 0 0 1-.649-.637zm5.641-1.757c-.91.144-1.83.225-2.745.248a23.143 23.143 0 0 1-1.61-2.248 23.14 23.14 0 0 1 1.61-2.248c.915.023 1.835.104 2.745.248.51.91.946 1.838 1.3 2.762-.354.924-.79 1.852-1.3 2.762v-.524zm2.235-5.666a24.16 24.16 0 0 0-3.15.637c-1.053-1.971-2.35-3.796-3.8-5.366 1.502-1.347 2.894-2.082 3.926-2.082.229 0 .446.011.649.037a.868.868 0 0 1 .442.102c.47.217.726 1.018.545 2.167-.09.565-.304 1.215-.612 1.905v2.6zm-2.7-.773c-.48-.843-1.003-1.653-1.564-2.423a22.227 22.227 0 0 1 3.12 0c-.56.77-1.083 1.58-1.564 2.423h.008zm-5.57 0c-.48.843-1.003 1.653-1.564 2.423a22.227 22.227 0 0 1-3.12 0c.56-.77 1.083-1.58 1.564-2.423H6.98zm10.034 5.666c.308.69.522 1.34.612 1.905.18 1.15-.075 1.95-.545 2.167a.868.868 0 0 1-.442.102c-1.032 0-2.424-.735-3.926-2.082 1.45-1.57 2.747-3.395 3.8-5.366a24.16 24.16 0 0 0 3.15.637zm2.634-2.227c0 1.07-.794 2.414-2.228 3.655a23.143 23.143 0 0 0-1.61-2.3 23.14 23.14 0 0 0 1.61-2.3c1.435 1.241 2.228 2.586 2.228 3.655v-.71z"/>
+          </svg>
+          <span class="text-sm font-semibold">React</span>
+        </div>
+
+        <!-- TypeScript -->
+        <div class="p5-badge clean-badge px-6 py-3 flex items-center gap-3">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.42.276.69.394c.268.118.58.244.934.378.404.148.772.312 1.103.493.332.182.614.392.846.634.232.241.41.519.535.835.125.316.187.675.187 1.076 0 .632-.132 1.149-.396 1.55-.264.4-.615.716-1.054.95-.439.232-.936.392-1.492.48a9.61 9.61 0 0 1-1.727.13 8.882 8.882 0 0 1-1.82-.164 5.052 5.052 0 0 1-1.266-.45v-2.574a5.48 5.48 0 0 0 .848.476c.272.132.56.232.864.3.304.068.594.103.87.103.35 0 .645-.028.886-.085.24-.056.43-.138.573-.245a.989.989 0 0 0 .333-.393.884.884 0 0 0 .11-.462.964.964 0 0 0-.165-.542c-.11-.162-.283-.31-.518-.447a6.16 6.16 0 0 0-.889-.39 43.655 43.655 0 0 0-1.183-.467 5.34 5.34 0 0 1-1.008-.544 3.505 3.505 0 0 1-.742-.695 2.837 2.837 0 0 1-.46-.924c-.102-.346-.153-.738-.153-1.175 0-.592.14-1.088.418-1.49.278-.4.637-.719 1.077-.955.44-.236.925-.402 1.455-.498a8.556 8.556 0 0 1 1.64-.146zm-6.354.063v2.133H9.38v8.684H6.957v-8.684H4.21V9.813z"/>
+          </svg>
+          <span class="text-sm font-semibold">TypeScript</span>
+        </div>
+
+        <!-- Tailwind -->
+        <div class="p5-badge clean-badge px-6 py-3 flex items-center gap-3">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"/>
+          </svg>
+          <span class="text-sm font-semibold">Tailwind CSS</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       FOOTER
+       ======================== -->
+  <footer class="py-12 px-6 border-t" style="border-color: var(--border);">
+    <div class="max-w-4xl mx-auto text-center">
+      <!-- Logo + Name -->
+      <div class="flex items-center justify-center gap-3 mb-4">
+        <img src="./assets/logo.png" alt="Futaba" class="w-8 h-8 rounded-md" />
+        <span class="text-lg font-bold" style="color: var(--text-primary);">Futaba</span>
+      </div>
+
+      <!-- Links -->
+      <div class="flex justify-center gap-6 mb-6">
+        <a href="https://github.com/adv-inn/futaba"
+           class="text-sm hover:underline" style="color: var(--text-secondary);">
+          GitHub
+        </a>
+        <a href="https://github.com/adv-inn/futaba/releases"
+           class="text-sm hover:underline" style="color: var(--text-secondary);">
+          Releases
+        </a>
+        <a href="https://github.com/adv-inn/futaba/issues"
+           class="text-sm hover:underline" style="color: var(--text-secondary);">
+          Issues
+        </a>
+      </div>
+
+      <!-- Persona 5 Tribute -->
+      <p class="text-xs mb-2" style="color: var(--text-secondary);" data-i18n="footer.tribute">
+        Inspired by Persona 5 &mdash; "Take Your Heart"
+      </p>
+
+      <!-- Version -->
+      <p class="text-xs" style="color: var(--text-secondary); opacity: 0.6;">
+        v0.2.4
+      </p>
+    </div>
+  </footer>
+
+  <!-- Main JS -->
+  <script src="./js/main.js"></script>
+</body>
+</html>

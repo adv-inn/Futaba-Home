@@ -90,7 +90,7 @@
   var LANG_KEY = 'futaba-static-lang';
   var LANGS = {
     zh: {
-      'hero.subtitle': 'LoL 对局分析助手 — 实时数据 · OP.GG 集成 · AI 战术分析',
+      'hero.subtitle': '一款使用 Tauri 开发的支持双端操作的英雄联盟客户端，简洁，高效',
       'features.title': 'Features',
       'features.subtitle': '从选人阶段到对局结束，全流程智能辅助',
       // Feature cards
@@ -125,7 +125,7 @@
       'footer.tribute': 'Inspired by Persona 5 — "Take Your Heart"',
     },
     en: {
-      'hero.subtitle': 'LoL Match Analysis Assistant — Real-time Data · OP.GG · AI Tactics',
+      'hero.subtitle': 'A dual-platform League of Legends client built with Tauri — simple and efficient',
       'features.title': 'Features',
       'features.subtitle': 'Intelligent assistance from champion select to post-game',
       // Feature cards
@@ -160,7 +160,7 @@
       'footer.tribute': 'Inspired by Persona 5 — "Take Your Heart"',
     },
     ja: {
-      'hero.subtitle': 'LoL 試合分析アシスタント — リアルタイム · OP.GG 連携 · AI 戦術分析',
+      'hero.subtitle': 'Tauri で開発されたデュアルプラットフォーム対応の LoL クライアント — シンプルで高効率',
       'features.title': 'Features',
       'features.subtitle': 'チャンピオン選択から試合終了まで、全行程をスマートにサポート',
       // Feature cards

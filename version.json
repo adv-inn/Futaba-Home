@@ -1,10 +1,11 @@
 {
-  "version": "0.2.7",
-  "tag": "v0.2.7",
-  "published_at": "2026-02-26T10:05:47Z",
-  "release_notes": "> ⚠️ **更新提示**：由于此前的一处问题，本次更新**无法通过程序内跳转完成**，请手动前往 [GitHub Releases](https://github.com/adv-inn/Futaba/releases) 或官网下载最新版本。\n\n## ✨ 新功能\n\n- **OP.GG 版本对齐** — 从 LCU API 获取本地实际补丁版本，与 OP.GG 版本列表匹配，腾讯渠道用户不再看到超前版本数据\n- **选人阶段\"老面孔\"检测** — 利用已有战绩标注近期队友/对手\n- **首页\"启动游戏\"按钮** — 区分腾讯/Riot 渠道，以管理员权限启动客户端\n- **网络页对局总结** + 再来一局、关闭确认、匹配计时等\n- **OP.GG Tier List 页面** — 英雄梯度排行\n\n## 🐛 修复\n\n- 自动接受准备检查竞态修复（延迟后重新校验状态避免与手动接受冲突）\n- LCU 连接器退避策略优化\n- 对局页 LCDA 未启用引导提示\n- 调试日志文件路径从项目目录迁移到 %LOCALAPPDATA%/.futaba/log/\n\n## 📥 Installation\n\n### Windows\n- **Portable**: Download `Futaba_v0.2.7_x64_portable.zip`, extract and run\n- **Executable**: Download `Futaba_v0.2.7_x64.exe` directly\n",
+  "version": "0.2.8",
+  "tag": "v0.2.8",
+  "published_at": "2026-03-02T08:16:44Z",
+  "release_notes": "### 新功能\n- 安装程序从 MSI 切换到 NSIS，支持多语言（中/英/繁/日/韩）+ 品牌化\n- OTA 自动更新 (tauri-plugin-updater)\n- 防止重复启动 (single-instance)\n- 房间页面视图切换（分队视图 / 列表视图）\n- 战绩格子增加闪现位置标识 + KDA 分色显示\n\n### 修复\n- 排位位置检测改用 participantId 排序，修复腾讯服务器 lane/role 数据不准确的问题\n- 代码质量审计修复 (P0/P1/P2 共 23 项)\n- 手动接受/拒绝对局无效 + 关闭程序导致 LoL 一起退出\n- ARAM 替补池抢人失败时显示 toast 提示\n- OP.GG 英雄详情复用选人阶段预加载缓存\n- ChampSelect→GameStart 保留友方数据 + 补全结算阶段国际化\n- 战绩按当前游戏模式过滤 + 左侧卡片填充垂直空间\n- Lobby 阶段消除 404 警告和模式检测刷屏\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.2.8_x64_installer.exe` and install\n- **Portable**: Download `Futaba_v0.2.8_x64_portable.zip`, extract and run\n- **Executable**: Download `Futaba_v0.2.8_x64.exe` directly\n",
   "download": {
-    "exe": "https://github.com/adv-inn/futaba/releases/download/v0.2.7/Futaba_v0.2.7_x64.exe",
-    "portable": "https://github.com/adv-inn/futaba/releases/download/v0.2.7/Futaba_v0.2.7_x64_portable.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.2.8/Futaba_v0.2.8_x64_installer.exe",
+    "exe": "https://github.com/adv-inn/futaba/releases/download/v0.2.8/Futaba_v0.2.8_x64.exe",
+    "portable": "https://github.com/adv-inn/futaba/releases/download/v0.2.8/Futaba_v0.2.8_x64_portable.zip"
   }
 }

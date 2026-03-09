@@ -1,11 +1,11 @@
 {
-  "version": "0.2.9",
-  "tag": "v0.2.9",
-  "published_at": "2026-03-09T18:33:38Z",
-  "release_notes": "## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.2.9_x64_installer.exe` and install\n- **Portable**: Download `Futaba_v0.2.9_x64_portable.zip`, extract and run\n- **Executable**: Download `Futaba_v0.2.9_x64.exe` directly\n",
+  "version": "0.2.10",
+  "tag": "v0.2.10",
+  "published_at": "2026-03-09T22:52:57Z",
+  "release_notes": "## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.2.10_x64_installer.exe` and install\n- **Portable**: Download `Futaba_v0.2.10_x64_portable.zip`, extract and run\n- **Executable**: Download `Futaba_v0.2.10_x64.exe` directly\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.2.9/Futaba_v0.2.9_x64_installer.exe",
-    "exe": "https://github.com/adv-inn/futaba/releases/download/v0.2.9/Futaba_v0.2.9_x64.exe",
-    "portable": "https://github.com/adv-inn/futaba/releases/download/v0.2.9/Futaba_v0.2.9_x64_portable.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.2.10/Futaba_v0.2.10_x64_installer.exe",
+    "exe": "https://github.com/adv-inn/futaba/releases/download/v0.2.10/Futaba_v0.2.10_x64.exe",
+    "portable": "https://github.com/adv-inn/futaba/releases/download/v0.2.10/Futaba_v0.2.10_x64_portable.zip"
   }
 }

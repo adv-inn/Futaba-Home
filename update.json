@@ -1,0 +1,11 @@
+{
+  "version": "0.2.10",
+  "notes": "See https://github.com/adv-inn/futaba/releases/tag/v0.2.10",
+  "pub_date": "2026-03-09T22:52:22Z",
+  "platforms": {
+    "windows-x86_64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTVkVXUHlOaTJ3SWR1ZXA4UFZDWWtaM1FiZ21EK01IYnVUNkVmQ3F2QkxOUUpndWZ4aTlMQWNiMGxnTTZZSURDWEJGNTJIc3cyYU50b0lrSTdEcTE1M0RaMFVQcUlkbkFJPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzczMDk2NzQxCWZpbGU6RnV0YWJhXzAuMi4xMF94NjQtc2V0dXAubnNpcy56aXAKeVZLeGtRR0J3dGxuM2x3WVhCWlNtMittdnRuU29xSmU0VGh3VEwxSGtmMjVCZ2ZoVHRGWmpQSTJ0ODZJT1RCcC9Rd2xRUkVQWUZQcGlIbUVTTzlSQUE9PQo=",
+      "url": "https://github.com/adv-inn/futaba/releases/download/v0.2.10/Futaba_0.2.10_x64-setup.nsis.zip"
+    }
+  }
+}

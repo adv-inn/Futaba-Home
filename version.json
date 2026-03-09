@@ -1,7 +1,7 @@
 {
   "version": "0.2.11",
   "tag": "v0.2.11",
-  "published_at": "2026-03-09T23:26:40Z",
+  "published_at": "2026-03-09T23:45:10Z",
   "release_notes": "### 修复\n- OTA 安装失败时正确显示错误状态，提供手动下载兜底入口\n- 检查更新始终加载 version.json 手动下载信息作为 OTA 失败回退\n\n### 其他\n- 统一发布产物命名规范\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.2.11_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.2.11_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.2.11_portable_x64.zip`, extract and run\n",
   "download": {
     "installer": "https://github.com/adv-inn/futaba/releases/download/v0.2.11/Futaba_v0.2.11_x64_installer.exe",

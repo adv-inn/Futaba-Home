@@ -1,11 +1,11 @@
 {
-  "version": "0.2.8",
-  "tag": "v0.2.8",
-  "published_at": "2026-03-02T08:16:44Z",
-  "release_notes": "### 新功能\n- 安装程序从 MSI 切换到 NSIS，支持多语言（中/英/繁/日/韩）+ 品牌化\n- OTA 自动更新 (tauri-plugin-updater)\n- 防止重复启动 (single-instance)\n- 房间页面视图切换（分队视图 / 列表视图）\n- 战绩格子增加闪现位置标识 + KDA 分色显示\n\n### 修复\n- 排位位置检测改用 participantId 排序，修复腾讯服务器 lane/role 数据不准确的问题\n- 代码质量审计修复 (P0/P1/P2 共 23 项)\n- 手动接受/拒绝对局无效 + 关闭程序导致 LoL 一起退出\n- ARAM 替补池抢人失败时显示 toast 提示\n- OP.GG 英雄详情复用选人阶段预加载缓存\n- ChampSelect→GameStart 保留友方数据 + 补全结算阶段国际化\n- 战绩按当前游戏模式过滤 + 左侧卡片填充垂直空间\n- Lobby 阶段消除 404 警告和模式检测刷屏\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.2.8_x64_installer.exe` and install\n- **Portable**: Download `Futaba_v0.2.8_x64_portable.zip`, extract and run\n- **Executable**: Download `Futaba_v0.2.8_x64.exe` directly\n",
+  "version": "0.2.9",
+  "tag": "v0.2.9",
+  "published_at": "2026-03-09T18:33:38Z",
+  "release_notes": "## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.2.9_x64_installer.exe` and install\n- **Portable**: Download `Futaba_v0.2.9_x64_portable.zip`, extract and run\n- **Executable**: Download `Futaba_v0.2.9_x64.exe` directly\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.2.8/Futaba_v0.2.8_x64_installer.exe",
-    "exe": "https://github.com/adv-inn/futaba/releases/download/v0.2.8/Futaba_v0.2.8_x64.exe",
-    "portable": "https://github.com/adv-inn/futaba/releases/download/v0.2.8/Futaba_v0.2.8_x64_portable.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.2.9/Futaba_v0.2.9_x64_installer.exe",
+    "exe": "https://github.com/adv-inn/futaba/releases/download/v0.2.9/Futaba_v0.2.9_x64.exe",
+    "portable": "https://github.com/adv-inn/futaba/releases/download/v0.2.9/Futaba_v0.2.9_x64_portable.zip"
   }
 }

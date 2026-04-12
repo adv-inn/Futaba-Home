@@ -1,11 +1,11 @@
 {
-  "version": "0.3.0",
-  "tag": "v0.3.0",
-  "published_at": "2026-03-15T11:19:30Z",
-  "release_notes": "## Futaba v0.3.0 更新日志\n\n### ✨ 体验升级\n\n- **玩家数据逐人加载** — 进入房间后队友信息不再等待全部加载完才显示，每个玩家数据就绪即刻出现，配合 loading 动画和淡入效果\n- **战绩查询分页加载** — 初始加载 50 场，滚动到底部自动加载更多，最多 100 场，不再一次性等待全部数据\n- **选人阶段名字即时显示** — 进入游戏加载时，玩家名称秒级出现，无需等待战绩数据加载完成\n- **ARAM 换英雄优化** — 替换英雄后其他备选席英雄立即可操作，不再锁定整个英雄池\n- **分队视图 OP.GG 集成** — 选人阶段右侧直接展示 OP.GG 英雄推荐（符文/技能/装备），应用按钮一键设置\n- **对局页无需 LCDA** — 即使未开启 Live Client Data API，对局页也能显示双方阵容和英雄信息\n- **游戏结束自动跳转** — 对局结束后自动切换到赛后总结页，查看期间不会被强制跳走\n- **Alt+F4 智能处理** — 跳过水晶动画后仍正确显示赛后总结，中途退出不再错误跳转首页\n\n### 🎨 界面优化\n\n- 全局 loading 动画统一为旋转 spinner（与启动画面一致）\n- 选人阶段战绩列遮罩层加载效果\n- 战绩数据、段位信息 fade-in 过渡动画\n- 海克斯强化图标加载失败时自动重试\n- 「再来一局」按钮智能切换：已在大厅时显示「前往房间」\n\n### 🔧 稳定性改进\n\n- 修复模式切换后战绩不刷新\n- 修复排位换楼时英雄错位\n- 修复 ARAM 队友换英雄图标不实时更新\n- 修复克隆大作战模式无法识别\n- 修复好友列表重复显示\n- 修复分享战绩时海克斯图标缺失\n- 英雄图标加载统一走本地缓存，减少 CDN 403 错误\n\n### ⚙️ 技术改进\n\n- 新增 futaba-core 独立 crate（15 项自动化测试）\n- 轮询系统重构为全局单例\n- 配置写入统一为单路径\n- CI 支持 dev 分支自动检查\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.3.0_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.3.0_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.3.0_portable_x64.zip`, extract and run\n",
+  "version": "0.3.1",
+  "tag": "v0.3.1",
+  "published_at": "2026-04-12T17:15:45Z",
+  "release_notes": "### 新功能\n\n- **Dashboard 全屏沉浸模式**: 窗口最大化自动进入，四阶段视图覆盖游戏全生命周期\n  - Lobby: 段位徽章、近期统计、OP.GG 榜单(英雄搜索/筛选)、最近战绩(结果/队列筛选)、好友战绩内联、房间管理(离开/转让/踢人)\n  - 选人: 三栏布局(队友/OP.GG/敌方) + 自动选人\n  - 对局中: 双队等宽布局 + 诊断式加载 + 事件时间线\n  - 赛后: 纯阶段驱动结算，不跳出全屏\n- **对局经济差估算**: 纯装备价值计算双方经济差，VS 分隔线实时显示\n- **组队检测**: Union-Find 算法分析最近 20 场同队关系\n\n### 改进\n\n- OP.GG 榜单模块级缓存，切换视图不重复请求\n- MatchCard/MatchDetailRow 视觉简化：中性背景 + 极简色彩标识\n- LobbyCreator emoji 替换为 Lucide 图标\n\n### 修复\n\n- LCDA vec_lenient 容错：兼容 Riot API 返回 {} 而非 []\n- Dashboard 最大化状态脱节根治\n- OTA 更新进度优化 + 代理支持\n- vitest 4.x → 3.x 消除 rolldown pre-release 依赖导致的 CI 失败\n- tauri-plugin-sql Rust/npm 版本同步\n\n### 文档\n\n- architecture.md / tauri-commands.md / todolist.md 等 7 个文档全面更新\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.3.1_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.3.1_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.3.1_portable_x64.zip`, extract and run\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.3.0/Futaba_v0.3.0_x64_installer.exe",
-    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.3.0/Futaba_v0.3.0_portable_x64.exe",
-    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.3.0/Futaba_v0.3.0_portable_x64.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.3.1/Futaba_v0.3.1_x64_installer.exe",
+    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.3.1/Futaba_v0.3.1_portable_x64.exe",
+    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.3.1/Futaba_v0.3.1_portable_x64.zip"
   }
 }

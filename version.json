@@ -1,11 +1,11 @@
 {
-  "version": "0.3.1",
-  "tag": "v0.3.1",
-  "published_at": "2026-04-12T17:15:45Z",
-  "release_notes": "### 新功能\n\n- **Dashboard 全屏沉浸模式**: 窗口最大化自动进入，四阶段视图覆盖游戏全生命周期\n  - Lobby: 段位徽章、近期统计、OP.GG 榜单(英雄搜索/筛选)、最近战绩(结果/队列筛选)、好友战绩内联、房间管理(离开/转让/踢人)\n  - 选人: 三栏布局(队友/OP.GG/敌方) + 自动选人\n  - 对局中: 双队等宽布局 + 诊断式加载 + 事件时间线\n  - 赛后: 纯阶段驱动结算，不跳出全屏\n- **对局经济差估算**: 纯装备价值计算双方经济差，VS 分隔线实时显示\n- **组队检测**: Union-Find 算法分析最近 20 场同队关系\n\n### 改进\n\n- OP.GG 榜单模块级缓存，切换视图不重复请求\n- MatchCard/MatchDetailRow 视觉简化：中性背景 + 极简色彩标识\n- LobbyCreator emoji 替换为 Lucide 图标\n\n### 修复\n\n- LCDA vec_lenient 容错：兼容 Riot API 返回 {} 而非 []\n- Dashboard 最大化状态脱节根治\n- OTA 更新进度优化 + 代理支持\n- vitest 4.x → 3.x 消除 rolldown pre-release 依赖导致的 CI 失败\n- tauri-plugin-sql Rust/npm 版本同步\n\n### 文档\n\n- architecture.md / tauri-commands.md / todolist.md 等 7 个文档全面更新\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.3.1_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.3.1_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.3.1_portable_x64.zip`, extract and run\n",
+  "version": "0.4.0",
+  "tag": "v0.4.0",
+  "published_at": "2026-04-12T19:22:19Z",
+  "release_notes": "> 本版本基于 v0.3.1 经过测试和 bug 修复后正式定版为 v0.4.0。\n> v0.3.1 为过渡版本，建议直接使用 v0.4.0。\n\n### 新功能\n\n- **Dashboard 全屏沉浸模式**: 窗口最大化自动进入，覆盖游戏全生命周期\n  - Lobby: 段位徽章、OP.GG 榜单、战绩筛选、好友战绩、房间管理\n  - 选人/对局中/赛后: 三栏布局、诊断加载、阶段驱动\n- **对局经济差估算 + LCDA 事件解析**\n- **组队检测**: Union-Find 算法分析同队关系\n\n### 修复\n\n- Always-on-top 改为选人闪切(不再全程置顶，兼容无边框窗口)\n- 图片缓存版本感知: 新装备图标不再因版本竞态永久空白\n- OP.GG 刷新按钮同步清除失败图片缓存\n- LCDA vec_lenient 容错(兼容 Riot API {} 替代 [])\n- vitest 4→3 消除 rolldown 依赖导致的 CI 失败\n- tauri-plugin-sql 版本同步\n\n### 改进\n\n- CI 增强: Tauri 插件版本对齐检查 + push 到 main 触发完整构建\n- 前端测试入库(13 文件, 408 tests)\n- MatchCard 视觉简化、Lucide 图标替代 emoji\n- 文档全面更新(architecture/tauri-commands/todolist 等 7 个)\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.4.0_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.4.0_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.4.0_portable_x64.zip`, extract and run\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.3.1/Futaba_v0.3.1_x64_installer.exe",
-    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.3.1/Futaba_v0.3.1_portable_x64.exe",
-    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.3.1/Futaba_v0.3.1_portable_x64.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.4.0/Futaba_v0.4.0_x64_installer.exe",
+    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.4.0/Futaba_v0.4.0_portable_x64.exe",
+    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.4.0/Futaba_v0.4.0_portable_x64.zip"
   }
 }

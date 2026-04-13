@@ -1,8 +1,8 @@
 {
   "version": "0.4.1",
   "tag": "v0.4.1",
-  "published_at": "2026-04-13T08:05:29Z",
-  "release_notes": "### 新功能\n- 设置页新增「日志」查看器，支持级别筛选、关键词搜索、自动刷新\n- 分享图新增治疗量数据展示\n\n### 优化\n- 统一设计语言 — 标题、玩家卡片、Tab 栏全局视觉对齐\n- 对局结束页面标题简化\n\n### 修复\n- 修复图片加载失败：版本获取遗漏导致装备图标无法显示\n- 修复 OP.GG 排行榜刷新按钮无效\n- 修复手动下载链接 404\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.4.1_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.4.1_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.4.1_portable_x64.zip`, extract and run\n",
+  "published_at": "2026-04-13T09:00:06Z",
+  "release_notes": "### 新功能\n- 设置页新增「日志」查看器，支持级别筛选、关键词搜索、自动刷新\n- 日志一键复制，方便反馈问题\n- 分享图新增治疗量数据展示\n\n### 优化\n- 统一设计语言 — 标题、玩家卡片、Tab 栏全局视觉对齐\n- 对局结束页面标题简化\n\n### 修复\n- 修复图片加载失败：版本获取遗漏导致装备图标无法显示\n- 修复 OP.GG 排行榜刷新按钮无效\n- 修复手动下载链接 404\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.4.1_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.4.1_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.4.1_portable_x64.zip`, extract and run\n",
   "download": {
     "installer": "https://github.com/adv-inn/futaba/releases/download/v0.4.1/Futaba_v0.4.1_x64_installer.exe",
     "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.4.1/Futaba_v0.4.1_portable_x64.exe",

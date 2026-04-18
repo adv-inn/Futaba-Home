@@ -1,11 +1,11 @@
 {
-  "version": "0.4.1",
-  "tag": "v0.4.1",
-  "published_at": "2026-04-13T09:00:06Z",
-  "release_notes": "### 新功能\n- 设置页新增「日志」查看器，支持级别筛选、关键词搜索、自动刷新\n- 日志一键复制，方便反馈问题\n- 分享图新增治疗量数据展示\n\n### 优化\n- 统一设计语言 — 标题、玩家卡片、Tab 栏全局视觉对齐\n- 对局结束页面标题简化\n\n### 修复\n- 修复图片加载失败：版本获取遗漏导致装备图标无法显示\n- 修复 OP.GG 排行榜刷新按钮无效\n- 修复手动下载链接 404\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.4.1_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.4.1_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.4.1_portable_x64.zip`, extract and run\n",
+  "version": "0.5.2",
+  "tag": "v0.5.2",
+  "published_at": "2026-04-18T19:08:42Z",
+  "release_notes": "### 新功能\n- 大乱斗/海克斯大乱斗选人阶段，英雄池图标右下角显示 OP.GG 梯度角标（OP/T1–T5）\n- 海克斯强化识别：新增可选高精度 OCR 引擎（PaddleOCR），支持应用内下载或指向本地 PaddleOCR-json 目录复用，解决 Windows OCR 对部分 2 字强化名称（如\"溢流\"/\"易损\"）的识别盲区\n\n### 优化\n- 海克斯识别精度大幅提升：改为「检测驱动」主通路，卡内容居中、底部地形噪声等复杂场景更稳\n- overlay 定位优化：底部居中、从距底部 10% 调到 20%，避免遮挡游戏原生 UI\n- 海克斯 overlay 稳定性改进：消除并发创建重复窗口的竞态\n\n### 修复\n- Prismatic（棱镜）强化识别错误 — 统一所有 card 的 Y 范围到交集\n- 强化 card 被遮挡后取消遮挡不再更新\n- 强化 card 被遮挡时出现双重 overlay\n- OCR 误识别修正：文字行按 y 排序、反向子串匹配、name crop 范围收窄排除 category tag 干扰\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.5.2_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.5.2_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.5.2_portable_x64.zip`, extract and run\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.4.1/Futaba_v0.4.1_x64_installer.exe",
-    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.4.1/Futaba_v0.4.1_portable_x64.exe",
-    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.4.1/Futaba_v0.4.1_portable_x64.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.5.2/Futaba_v0.5.2_x64_installer.exe",
+    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.5.2/Futaba_v0.5.2_portable_x64.exe",
+    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.5.2/Futaba_v0.5.2_portable_x64.zip"
   }
 }

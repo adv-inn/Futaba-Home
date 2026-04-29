@@ -1,11 +1,11 @@
 {
-  "version": "0.5.3",
-  "tag": "v0.5.3",
-  "published_at": "2026-04-27T08:37:43Z",
-  "release_notes": "### 修复\n- 海克斯强化识别：修复部分同名强化（如「扇巴掌」）显示梯度/选取率为 0 的问题\n- 局域网分享：修复连接断开后端口长期处于 CLOSE_WAIT 状态的资源泄漏\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.5.3_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.5.3_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.5.3_portable_x64.zip`, extract and run\n",
+  "version": "0.5.4",
+  "tag": "v0.5.4",
+  "published_at": "2026-04-29T19:05:52Z",
+  "release_notes": "### 优化\n- 选人/loading 阶段对手段位与近期战绩加载速度显著提升\n- 切到非房间页(设置 / 战绩等)再切回时,选人信息无需重新加载\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.5.4_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.5.4_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.5.4_portable_x64.zip`, extract and run\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.5.3/Futaba_v0.5.3_x64_installer.exe",
-    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.5.3/Futaba_v0.5.3_portable_x64.exe",
-    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.5.3/Futaba_v0.5.3_portable_x64.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.5.4/Futaba_v0.5.4_x64_installer.exe",
+    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.5.4/Futaba_v0.5.4_portable_x64.exe",
+    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.5.4/Futaba_v0.5.4_portable_x64.zip"
   }
 }

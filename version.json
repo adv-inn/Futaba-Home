@@ -1,11 +1,11 @@
 {
-  "version": "0.5.4",
-  "tag": "v0.5.4",
-  "published_at": "2026-04-29T19:05:52Z",
-  "release_notes": "### 优化\n- 选人/loading 阶段对手段位与近期战绩加载速度显著提升\n- 切到非房间页(设置 / 战绩等)再切回时,选人信息无需重新加载\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.5.4_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.5.4_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.5.4_portable_x64.zip`, extract and run\n",
+  "version": "0.5.5",
+  "tag": "v0.5.5",
+  "published_at": "2026-05-01T13:54:17Z",
+  "release_notes": "### 修复\n\n- 局域网分享端口在关闭软件后被占用、需重启电脑才能恢复（issue #5/#6）\n- 海克斯识别错位：「会心防御」/「会心防守」等同名异 ID 匹配错乱、tier 数据空白\n- 海克斯识别错位：「升级：xxx」系列随机选错具体强化\n- 海克斯识别遗漏：OCR 中间漏字（如「杀戮时间到了」漏「戮」）时无法识别\n- 大乱斗局内 overlay 显示了其他英雄的海克斯强度数据（championId 错位）\n\n### 其他\n\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.5.5_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.5.5_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.5.5_portable_x64.zip`, extract and run\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.5.4/Futaba_v0.5.4_x64_installer.exe",
-    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.5.4/Futaba_v0.5.4_portable_x64.exe",
-    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.5.4/Futaba_v0.5.4_portable_x64.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.5.5/Futaba_v0.5.5_x64_installer.exe",
+    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.5.5/Futaba_v0.5.5_portable_x64.exe",
+    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.5.5/Futaba_v0.5.5_portable_x64.zip"
   }
 }

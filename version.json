@@ -1,11 +1,11 @@
 {
-  "version": "0.5.5",
-  "tag": "v0.5.5",
-  "published_at": "2026-05-01T13:54:17Z",
-  "release_notes": "### 修复\n\n- 局域网分享端口在关闭软件后被占用、需重启电脑才能恢复（issue #5/#6）\n- 海克斯识别错位：「会心防御」/「会心防守」等同名异 ID 匹配错乱、tier 数据空白\n- 海克斯识别错位：「升级：xxx」系列随机选错具体强化\n- 海克斯识别遗漏：OCR 中间漏字（如「杀戮时间到了」漏「戮」）时无法识别\n- 大乱斗局内 overlay 显示了其他英雄的海克斯强度数据（championId 错位）\n\n### 其他\n\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.5.5_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.5.5_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.5.5_portable_x64.zip`, extract and run\n",
+  "version": "0.6.0",
+  "tag": "v0.6.0",
+  "published_at": "2026-05-08T08:26:08Z",
+  "release_notes": "### 新功能\n- 实时数据悬浮窗：游戏中实时展示自己的 22 项详细属性、QWER 技能等级与金币，配血量/蓝量条\n- 敌方属性估算：基于 171 英雄 + 320 装备数据，10 人列表显示估算属性摘要，点击可展开详细面板（生命值/攻击力/法强/护甲/魔抗/攻速/暴击/技能急速/穿透/吸血等 18 项）\n- Overlay 新增英雄定位、技能冷却、装备列表、ARAM 特殊系数和击杀事件记录\n\n### 修复\n- 修复海克斯强化 OCR 在「升级：荆棘之甲」等带全角冒号的 augment 名称丢字、误匹配的问题\n- 修复对局结束后回到房间页时，最近战绩与段位仍显示旧数据的问题\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.6.0_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.6.0_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.6.0_portable_x64.zip`, extract and run\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.5.5/Futaba_v0.5.5_x64_installer.exe",
-    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.5.5/Futaba_v0.5.5_portable_x64.exe",
-    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.5.5/Futaba_v0.5.5_portable_x64.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.6.0/Futaba_v0.6.0_x64_installer.exe",
+    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.6.0/Futaba_v0.6.0_portable_x64.exe",
+    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.6.0/Futaba_v0.6.0_portable_x64.zip"
   }
 }

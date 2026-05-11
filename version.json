@@ -1,11 +1,11 @@
 {
-  "version": "0.6.0",
-  "tag": "v0.6.0",
-  "published_at": "2026-05-08T08:26:08Z",
-  "release_notes": "### 新功能\n- 实时数据悬浮窗：游戏中实时展示自己的 22 项详细属性、QWER 技能等级与金币，配血量/蓝量条\n- 敌方属性估算：基于 171 英雄 + 320 装备数据，10 人列表显示估算属性摘要，点击可展开详细面板（生命值/攻击力/法强/护甲/魔抗/攻速/暴击/技能急速/穿透/吸血等 18 项）\n- Overlay 新增英雄定位、技能冷却、装备列表、ARAM 特殊系数和击杀事件记录\n\n### 修复\n- 修复海克斯强化 OCR 在「升级：荆棘之甲」等带全角冒号的 augment 名称丢字、误匹配的问题\n- 修复对局结束后回到房间页时，最近战绩与段位仍显示旧数据的问题\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.6.0_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.6.0_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.6.0_portable_x64.zip`, extract and run\n",
+  "version": "0.6.1",
+  "tag": "v0.6.1",
+  "published_at": "2026-05-11T08:17:04Z",
+  "release_notes": "### 优化\n- 关闭英雄联盟客户端后，应用不再持续轮询陈旧凭据触发无效连接，日志更安静、CPU 占用更低\n- 启动游戏时若英雄数据尚未下发，自动按指数退避重试（最多覆盖 ~15s 启动窗口），避免冷启动拿不到英雄列表\n\n### 修复\n- \"常用英雄\"页面（含极地大乱斗等所有模式 Tab）不再错误展示\"末日人机 XXX\"等特殊模式专属变体\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.6.1_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.6.1_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.6.1_portable_x64.zip`, extract and run\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.6.0/Futaba_v0.6.0_x64_installer.exe",
-    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.6.0/Futaba_v0.6.0_portable_x64.exe",
-    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.6.0/Futaba_v0.6.0_portable_x64.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.6.1/Futaba_v0.6.1_x64_installer.exe",
+    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.6.1/Futaba_v0.6.1_portable_x64.exe",
+    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.6.1/Futaba_v0.6.1_portable_x64.zip"
   }
 }

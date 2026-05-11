@@ -1,11 +1,11 @@
 {
-  "version": "0.6.1",
-  "tag": "v0.6.1",
-  "published_at": "2026-05-11T08:17:04Z",
-  "release_notes": "### 优化\n- 关闭英雄联盟客户端后，应用不再持续轮询陈旧凭据触发无效连接，日志更安静、CPU 占用更低\n- 启动游戏时若英雄数据尚未下发，自动按指数退避重试（最多覆盖 ~15s 启动窗口），避免冷启动拿不到英雄列表\n\n### 修复\n- \"常用英雄\"页面（含极地大乱斗等所有模式 Tab）不再错误展示\"末日人机 XXX\"等特殊模式专属变体\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.6.1_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.6.1_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.6.1_portable_x64.zip`, extract and run\n",
+  "version": "0.6.2",
+  "tag": "v0.6.2",
+  "published_at": "2026-05-11T19:34:29Z",
+  "release_notes": "### 新功能\n- 备战席增加手动收缩按钮，可一键折叠英雄网格\n\n### 优化\n- 房间页 HUD 全新设计：顶部 header 整合所有阶段控件，配合可折叠阶段抽屉（模式选择 / 备战席 / 选人面板）\n- OP.GG 自动应用结果从全局 toast 升级为 header 状态芯片，不再遮挡选人焦点\n- 对局结束页顶部按钮重新设计（图标 + 圆角矩形 + 主题化样式）\n- 多页面视觉一致性：统一 h1 起始坐标，跨页切换不再有 4px 纵向跳动\n- 常用英雄页与 OP.GG 排行榜页加入入场淡入动画，与其他页面对齐\n\n### 修复\n- 征召模式选人面板：修复 i18n 翻译撞车导致显示「两个搜索英雄」的错觉\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.6.2_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.6.2_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.6.2_portable_x64.zip`, extract and run\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.6.1/Futaba_v0.6.1_x64_installer.exe",
-    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.6.1/Futaba_v0.6.1_portable_x64.exe",
-    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.6.1/Futaba_v0.6.1_portable_x64.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.6.2/Futaba_v0.6.2_x64_installer.exe",
+    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.6.2/Futaba_v0.6.2_portable_x64.exe",
+    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.6.2/Futaba_v0.6.2_portable_x64.zip"
   }
 }

@@ -1,11 +1,11 @@
 {
-  "version": "0.8.2",
-  "tag": "v0.8.2",
-  "published_at": "2026-05-30T07:59:48Z",
-  "release_notes": "### 新功能\n- 高精度 OCR 引擎下载新增「国内镜像下载」选项，无需代理即可直连\n- 自动更新（OTA）支持通过国内 GitHub 镜像下载，在「关于」页提供开关且设置会持久化\n\n### 优化\n- 官方更新源下载失败时，顶部横幅与设置页会提供「用国内镜像重试」一键引导，避免手动查找设置\n\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.8.2_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.8.2_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.8.2_portable_x64.zip`, extract and run\n",
+  "version": "0.8.3",
+  "tag": "v0.8.3",
+  "published_at": "2026-05-30T13:42:32Z",
+  "release_notes": "### 新功能\n- 通用设置新增「进入对局时自动跳转」偏好，可选择进入游戏时是否自动切到对局页；房间页附可关闭的提示，一键定位到设置项\n\n### 修复\n- 修复斗魂竞技场漂游城主城邦下，海克斯强化因装饰前缀（如「幸运：」「已升级：」「财富：」等 8 种）导致识别错误的问题\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.8.3_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.8.3_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.8.3_portable_x64.zip`, extract and run\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.8.2/Futaba_v0.8.2_x64_installer.exe",
-    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.8.2/Futaba_v0.8.2_portable_x64.exe",
-    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.8.2/Futaba_v0.8.2_portable_x64.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.8.3/Futaba_v0.8.3_x64_installer.exe",
+    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.8.3/Futaba_v0.8.3_portable_x64.exe",
+    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.8.3/Futaba_v0.8.3_portable_x64.zip"
   }
 }

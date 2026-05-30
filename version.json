@@ -1,11 +1,11 @@
 {
-  "version": "0.8.1",
-  "tag": "v0.8.1",
-  "published_at": "2026-05-30T03:31:15Z",
-  "release_notes": "## v0.8.1\n\n### 修复\n- 修复局内悬浮窗（快捷键唤出）段位名称显示为英文的问题，现正确显示中文段位\n- 修复局内悬浮窗历史战绩「加载一次后不再刷新」的问题：再次遇到曾加载过的玩家会显示过时战绩，现每局结束后自动失效并重新拉取最新战绩\n\n---\n\n## v0.8.0\n\n### 新功能\n- 选人阶段支持退出(Dodge);新增对局详情面板(海克斯/击杀时间轴/队内占比展开)+ 战绩分享图增强\n- OP.GG 新增 Tier 强度榜模式,详情面板偏好持久化\n\n### 优化\n- 修复对局详情页海克斯图标重渲染卡顿,资源加载更流畅\n- 组队/近期遭遇检测改用 gameId 交集,识别更准确;玩家徽章改为 SVG 更清晰\n\n### 修复\n- 修复国服大区/平台识别(改走 rso-auth 主源 + 5 级优先级链)\n- 修复斗魂竞技场强化/Tier 数据在部分情况下不显示的问题\n\n### 其他\n- 代码质量与稳定性优化(安全加固、依赖漏洞修复、测试补充、模块解耦)\n\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.8.1_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.8.1_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.8.1_portable_x64.zip`, extract and run\n",
+  "version": "0.8.2",
+  "tag": "v0.8.2",
+  "published_at": "2026-05-30T07:59:48Z",
+  "release_notes": "### 新功能\n- 高精度 OCR 引擎下载新增「国内镜像下载」选项，无需代理即可直连\n- 自动更新（OTA）支持通过国内 GitHub 镜像下载，在「关于」页提供开关且设置会持久化\n\n### 优化\n- 官方更新源下载失败时，顶部横幅与设置页会提供「用国内镜像重试」一键引导，避免手动查找设置\n\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.8.2_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.8.2_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.8.2_portable_x64.zip`, extract and run\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.8.1/Futaba_v0.8.1_x64_installer.exe",
-    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.8.1/Futaba_v0.8.1_portable_x64.exe",
-    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.8.1/Futaba_v0.8.1_portable_x64.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.8.2/Futaba_v0.8.2_x64_installer.exe",
+    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.8.2/Futaba_v0.8.2_portable_x64.exe",
+    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.8.2/Futaba_v0.8.2_portable_x64.zip"
   }
 }

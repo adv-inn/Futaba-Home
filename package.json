@@ -1,0 +1,13 @@
+{
+  "name": "futaba-home",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Futaba landing page (static)",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/tailwind.css -o ./css/tailwind.css --minify",
+    "watch:css": "tailwindcss -i ./src/tailwind.css -o ./css/tailwind.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}

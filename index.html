@@ -31,42 +31,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            p5: {
-              red: '#ff0000',
-              'red-dark': '#cc0000',
-              'red-light': '#ff3333',
-              black: '#0d0d0d',
-              'black-light': '#1a1a1a',
-              white: '#ffffff',
-            },
-            clean: {
-              primary: '#3b82f6',
-              'primary-dark': '#2563eb',
-              secondary: '#64748b',
-              background: '#f8fafc',
-              'background-dark': '#0f172a',
-              surface: '#ffffff',
-              'surface-dark': '#1e293b',
-              border: '#e2e8f0',
-              'border-dark': '#334155',
-            },
-          },
-          fontFamily: {
-            p5: ['"Bebas Neue"', 'Impact', 'sans-serif'],
-            clean: ['Inter', 'system-ui', 'sans-serif'],
-          },
-        },
-      },
-    };
-  </script>
+  <!-- Tailwind CSS (precompiled by `npm run build:css`) -->
+  <link rel="stylesheet" href="./css/tailwind.css" />
 
   <!-- Theme CSS -->
   <link rel="stylesheet" href="./css/themes.css" />

@@ -1,11 +1,11 @@
 {
-  "version": "0.8.3",
-  "tag": "v0.8.3",
-  "published_at": "2026-05-30T13:42:32Z",
-  "release_notes": "### 新功能\n- 通用设置新增「进入对局时自动跳转」偏好，可选择进入游戏时是否自动切到对局页；房间页附可关闭的提示，一键定位到设置项\n\n### 修复\n- 修复斗魂竞技场漂游城主城邦下，海克斯强化因装饰前缀（如「幸运：」「已升级：」「财富：」等 8 种）导致识别错误的问题\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.8.3_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.8.3_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.8.3_portable_x64.zip`, extract and run\n",
+  "version": "0.9.0",
+  "tag": "v0.9.0",
+  "published_at": "2026-06-01T08:34:52Z",
+  "release_notes": "### 新功能\n- AI 出装推荐：游戏中根据实时阵容、装备价值差、敌方威胁，由 LLM 后台规划接下来 3 件装备路线 + 1-3 件情境备选，支持经典与 ARAM 模式\n\n### 优化\n- 浮窗海克斯强化样式与 OP.GG 详情页对齐：2 列网格 + 稀有度色条 + Tier 徽章 + 名称与图标\n- AI 推荐调度提速：装备字典查询从 30-50 并发 IPC 改为单次拉全表，本地缓存按客户端版本号 keyed，版本未变启动免重拉\n- LLM 调用超时 60s → 180s 适配大模型推理峰值；失败时错误信息直接指出 timeout / connect / body 等具体阶段\n- 移除已弃用的「OP.GG 浮窗」设置项\n\n### 修复\n- F9 切换浮窗按一次就失效的问题\n- 自定义局进入对局后 AI 推荐拿不到 OP.GG 基准\n- AI 偶尔推荐不存在的装备（拦截 LCU 字典中的占位装备与 Arena 衍生 ID，唯一光环装备组互斥防止重复推荐）\n- 对位分析「团队经济差」恒为 0，改走装备价值差\n- 海克斯强化 OCR 偶发因多读字符（如「升级：雪球」误读「升级：雲雪球」）导致识别失败\n- AI 推荐在 OP.GG 基准缺失时直接放弃，改为按需重新加载\n- AI 推荐 UI「N 秒前更新」长时间不变（cache 命中时未刷新心跳）\n- 候选池按当前游戏模式过滤，避免 ARAM 装备出现在排位推荐里\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.9.0_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.9.0_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.9.0_portable_x64.zip`, extract and run\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.8.3/Futaba_v0.8.3_x64_installer.exe",
-    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.8.3/Futaba_v0.8.3_portable_x64.exe",
-    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.8.3/Futaba_v0.8.3_portable_x64.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.9.0/Futaba_v0.9.0_x64_installer.exe",
+    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.9.0/Futaba_v0.9.0_portable_x64.exe",
+    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.9.0/Futaba_v0.9.0_portable_x64.zip"
   }
 }

@@ -85,6 +85,124 @@
     applyTheme(THEME_ORDER[next]);
   }
 
+  // ========== Download Card + Mirror Switcher ==========
+
+  var MIRROR_KEY = 'futaba-static-mirror';
+  var MIRRORS = {
+    github: { prefix: 'https://github.com/' },
+    xget:   { prefix: 'https://xget.xi-xu.me/gh/' },
+  };
+  var ASSETS = ['installer', 'portable_exe', 'portable_zip'];
+  var ASSET_ELEMENT_IDS = {
+    installer: 'downloadPrimary',
+    portable_exe: 'downloadPortableExe',
+    portable_zip: 'downloadPortableZip',
+  };
+  // GitHub canonical URLs from version.json (always rewritten from this)
+  var canonicalUrls = null;
+  var canonicalVersion = null;
+
+  function getStoredMirror() {
+    try {
+      var v = localStorage.getItem(MIRROR_KEY);
+      return MIRRORS[v] ? v : 'github';
+    } catch (e) {
+      return 'github';
+    }
+  }
+
+  function rewriteUrl(githubUrl, mirror) {
+    if (!githubUrl) return '#';
+    if (mirror === 'github' || !MIRRORS[mirror]) return githubUrl;
+    // Only rewrite real github.com download URLs; leave anything else alone.
+    if (githubUrl.indexOf('https://github.com/') !== 0) return githubUrl;
+    return MIRRORS[mirror].prefix + githubUrl.substring('https://github.com/'.length);
+  }
+
+  function applyDownloadLinks(mirror) {
+    if (!canonicalUrls) return;
+    ASSETS.forEach(function (asset) {
+      var el = document.getElementById(ASSET_ELEMENT_IDS[asset]);
+      if (!el) return;
+      var url = canonicalUrls[asset];
+      if (!url) { el.removeAttribute('href'); return; }
+      el.href = rewriteUrl(url, mirror);
+    });
+  }
+
+  function setMirror(mirror) {
+    if (!MIRRORS[mirror]) mirror = 'github';
+    try { localStorage.setItem(MIRROR_KEY, mirror); } catch (e) {}
+    document.querySelectorAll('#mirrorSwitcher button').forEach(function (btn) {
+      var isActive = btn.dataset.mirror === mirror;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+    applyDownloadLinks(mirror);
+  }
+
+  function setDownloadStatus(message) {
+    var el = document.getElementById('downloadStatus');
+    if (!el) return;
+    if (message) {
+      el.textContent = message;
+      el.hidden = false;
+    } else {
+      el.textContent = '';
+      el.hidden = true;
+    }
+  }
+
+  function applyVersionLabels() {
+    var versionTag = document.getElementById('downloadVersion');
+    var footerVersion = document.getElementById('footerVersion');
+    var label = canonicalVersion ? 'v' + canonicalVersion : '';
+    if (versionTag) versionTag.textContent = label;
+    if (footerVersion) footerVersion.textContent = label;
+  }
+
+  function loadVersionData() {
+    // Cache-bust with a coarse hourly key so users see fresh releases without
+    // hammering the CDN. fetch() respects the Pages cache headers either way.
+    var cacheKey = Math.floor(Date.now() / 3600000);
+    return fetch('./version.json?t=' + cacheKey, { cache: 'no-cache' })
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function (data) {
+        canonicalVersion = data.version || null;
+        canonicalUrls = (data.download && typeof data.download === 'object') ? data.download : null;
+        applyVersionLabels();
+        applyDownloadLinks(getStoredMirror());
+      })
+      .catch(function (err) {
+        // Fallback: keep the static GitHub /releases links and surface a hint.
+        canonicalVersion = null;
+        canonicalUrls = null;
+        applyVersionLabels();
+        var dict = LANGS[getStoredLang()] || LANGS.zh;
+        setDownloadStatus(dict['download.error'] || 'Failed to load version info.');
+        // eslint-disable-next-line no-console
+        console.warn('[futaba-home] version.json load failed:', err);
+      });
+  }
+
+  function initDownloadCard() {
+    var switcher = document.getElementById('mirrorSwitcher');
+    if (switcher) {
+      switcher.addEventListener('click', function (e) {
+        var btn = e.target.closest('button[data-mirror]');
+        if (!btn) return;
+        setMirror(btn.dataset.mirror);
+      });
+    }
+    // Initialize mirror state immediately so UI reflects the stored choice
+    // even before version.json finishes loading.
+    setMirror(getStoredMirror());
+    loadVersionData();
+  }
+
   // ========== i18n ==========
 
   var LANG_KEY = 'futaba-static-lang';
@@ -123,6 +241,16 @@
       'tech.title': 'Tech Stack',
       'tech.subtitle': '现代技术栈，原生性能',
       'footer.tribute': 'Inspired by Persona 5 — "Take Your Heart"',
+      'footer.mirror_thanks': '国内镜像加速由',
+      'footer.mirror_thanks_suffix': '提供，感谢开源项目',
+      // Download card
+      'download.mirror': '镜像源',
+      'download.mirror.github': 'GitHub',
+      'download.mirror.xget': '国内镜像',
+      'download.installer': '下载安装版',
+      'download.portable_exe': '便携版 EXE',
+      'download.portable_zip': '便携版 ZIP',
+      'download.error': '版本信息加载失败，将跳转至 GitHub Releases',
     },
     en: {
       'hero.subtitle': 'A dual-platform League of Legends client built with Tauri — simple and efficient',
@@ -158,6 +286,16 @@
       'tech.title': 'Tech Stack',
       'tech.subtitle': 'Modern stack, native performance',
       'footer.tribute': 'Inspired by Persona 5 — "Take Your Heart"',
+      'footer.mirror_thanks': 'China-region mirror powered by',
+      'footer.mirror_thanks_suffix': '— thanks to the open-source project',
+      // Download card
+      'download.mirror': 'Mirror',
+      'download.mirror.github': 'GitHub',
+      'download.mirror.xget': 'China Mirror',
+      'download.installer': 'Download Installer',
+      'download.portable_exe': 'Portable EXE',
+      'download.portable_zip': 'Portable ZIP',
+      'download.error': 'Failed to fetch release info — falling back to GitHub Releases',
     },
     ja: {
       'hero.subtitle': 'Tauri で開発されたデュアルプラットフォーム対応の LoL クライアント — シンプルで高効率',
@@ -193,6 +331,16 @@
       'tech.title': 'Tech Stack',
       'tech.subtitle': 'モダンな技術スタック、ネイティブパフォーマンス',
       'footer.tribute': 'Inspired by Persona 5 — "Take Your Heart"',
+      'footer.mirror_thanks': '中国向けミラーは',
+      'footer.mirror_thanks_suffix': 'が提供、オープンソースプロジェクト',
+      // Download card
+      'download.mirror': 'ミラー',
+      'download.mirror.github': 'GitHub',
+      'download.mirror.xget': '国内ミラー',
+      'download.installer': 'インストーラー',
+      'download.portable_exe': 'ポータブル EXE',
+      'download.portable_zip': 'ポータブル ZIP',
+      'download.error': 'バージョン情報の取得に失敗しました。GitHub Releases にリダイレクトします',
     },
   };
 
@@ -285,6 +433,9 @@
 
     // Apply stored language
     applyLang(getStoredLang());
+
+    // Init download card (mirror switcher + version.json)
+    initDownloadCard();
 
     // Init scroll animations
     initScrollReveal();

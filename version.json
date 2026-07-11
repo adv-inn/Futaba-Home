@@ -1,11 +1,11 @@
 {
-  "version": "0.9.1",
-  "tag": "v0.9.1",
-  "published_at": "2026-07-08T18:55:45Z",
-  "release_notes": "### 新功能\n- 海克斯识别启用时自动检测全屏模式，一键切换为无边框窗口（全屏下无法截图识别）\n- 高精度 OCR 引擎下载支持随时取消，连接停滞也可中止\n- 引擎下载新增国内镜像开关，官方源失败时弹窗引导一键切换重试\n\n### 修复\n- 全屏游戏切回 Futaba 后界面按钮偏移、无法点击的问题（DPI 根治）\n- 国内镜像下载引擎报 403 Forbidden 的问题\n- 设置中关闭代理后，下载仍然走代理的问题\n- 游戏进行中启动 Futaba 时海克斯识别不生效、需等下一局的问题\n- 修改快捷键等设置时配置文件偶发损坏、设置页面失灵的问题（并发加固 + 损坏自愈）\n- 掉线重连对局时阶段追踪失效、日志刷错误的问题\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.9.1_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.9.1_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.9.1_portable_x64.zip`, extract and run\n",
+  "version": "0.9.2",
+  "tag": "v0.9.2",
+  "published_at": "2026-07-11T18:31:14Z",
+  "release_notes": "### 新功能\n- 局域网共享页加入访问令牌保护:二维码自带凭据,陌生设备无法再访问你的对局数据\n\n### 优化\n- Portable 版检测到新版本时引导前往官网下载,不再误装安装版\n- 对局中的界面刷新更轻量,减少不必要的重绘卡顿\n\n### 修复\n- 修复手动检查更新时下载链接为空的问题\n- 修复多窗口同时修改设置可能丢失配置的问题\n- 修复海克斯强化识别在异常后静默失效的问题\n\n### 其他\n- 大规模代码质量与稳定性优化(44 项健壮性审计全部处理:安全加固、并发修复、模块拆分,新增 42 项自动化测试)\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.9.2_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.9.2_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.9.2_portable_x64.zip`, extract and run\n\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.9.1/Futaba_v0.9.1_x64_installer.exe",
-    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.9.1/Futaba_v0.9.1_portable_x64.exe",
-    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.9.1/Futaba_v0.9.1_portable_x64.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.9.2/Futaba_v0.9.2_x64_installer.exe",
+    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.9.2/Futaba_v0.9.2_portable_x64.exe",
+    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.9.2/Futaba_v0.9.2_portable_x64.zip"
   }
 }

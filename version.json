@@ -1,11 +1,11 @@
 {
-  "version": "0.9.3",
-  "tag": "v0.9.3",
-  "published_at": "2026-07-14T02:30:13Z",
-  "release_notes": "### 新功能\n- 新增「启用游戏内置反作弊 (ACE)」:前置启动内置 ACE,减少系统开销(设置中开启,仅腾讯渠道)\n- 新增「以管理员身份启动」开关:开启后每次启动以管理员身份运行(需通过 UAC 授权),可解决全屏游戏中快捷键失效\n- 对局浮窗支持按住顶栏拖动位置\n\n### 优化\n- 界面全面支持中英双语(补全 400 余处翻译)\n- 对局浮窗实时跟随主题与明暗模式,顶栏贴顶更紧凑,隐藏滚动条,文字不再被误选中\n- 全面性能优化:启动更快、运行更省资源(渲染、轮询、内存、安装包体积)\n- 对局时间统一 24 小时制,并明确标注时长与开局时刻\n\n### 修复\n- 修复 OP.GG 推荐区在浅色模式下样式异常的问题\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.9.3_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.9.3_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.9.3_portable_x64.zip`, extract and run\n",
+  "version": "0.9.4",
+  "tag": "v0.9.4",
+  "published_at": "2026-07-16T07:38:27Z",
+  "release_notes": "### 修复\n- 修复 Futaba 关闭或异常退出后 PaddleOCR 后台进程可能残留并持续占用内存的问题\n- 修复退出全屏或无边框游戏后，Futaba 主窗口可能坍缩成小块、移出屏幕或无法显示的问题\n- 窗口无法自动恢复时会保存诊断信息并提示前往应用日志，便于反馈和后续定位\n\n### 其他\n- 代码质量与稳定性优化\n\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.9.4_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.9.4_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.9.4_portable_x64.zip`, extract and run\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.9.3/Futaba_v0.9.3_x64_installer.exe",
-    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.9.3/Futaba_v0.9.3_portable_x64.exe",
-    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.9.3/Futaba_v0.9.3_portable_x64.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.9.4/Futaba_v0.9.4_x64_installer.exe",
+    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.9.4/Futaba_v0.9.4_portable_x64.exe",
+    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.9.4/Futaba_v0.9.4_portable_x64.zip"
   }
 }

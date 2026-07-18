@@ -1,11 +1,11 @@
 {
-  "version": "0.9.4",
-  "tag": "v0.9.4",
-  "published_at": "2026-07-16T07:38:27Z",
-  "release_notes": "### 修复\n- 修复 Futaba 关闭或异常退出后 PaddleOCR 后台进程可能残留并持续占用内存的问题\n- 修复退出全屏或无边框游戏后，Futaba 主窗口可能坍缩成小块、移出屏幕或无法显示的问题\n- 窗口无法自动恢复时会保存诊断信息并提示前往应用日志，便于反馈和后续定位\n\n### 其他\n- 代码质量与稳定性优化\n\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.9.4_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.9.4_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.9.4_portable_x64.zip`, extract and run\n",
+  "version": "0.9.5",
+  "tag": "v0.9.5",
+  "published_at": "2026-07-18T07:31:01Z",
+  "release_notes": "### 修复\n- 修复 OP.GG 英雄排行榜独立窗口在全屏游戏切换或显示器变化后坍缩、移出屏幕且无法自动恢复的问题\n- 窗口自愈新增离屏检测：尺寸正常但完全移出屏幕的窗口现在也会被自动拉回可见区域\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.9.5_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.9.5_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.9.5_portable_x64.zip`, extract and run\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.9.4/Futaba_v0.9.4_x64_installer.exe",
-    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.9.4/Futaba_v0.9.4_portable_x64.exe",
-    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.9.4/Futaba_v0.9.4_portable_x64.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.9.5/Futaba_v0.9.5_x64_installer.exe",
+    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.9.5/Futaba_v0.9.5_portable_x64.exe",
+    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.9.5/Futaba_v0.9.5_portable_x64.zip"
   }
 }

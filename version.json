@@ -1,11 +1,11 @@
 {
-  "version": "0.9.5",
-  "tag": "v0.9.5",
-  "published_at": "2026-07-18T07:31:01Z",
-  "release_notes": "### 修复\n- 修复 OP.GG 英雄排行榜独立窗口在全屏游戏切换或显示器变化后坍缩、移出屏幕且无法自动恢复的问题\n- 窗口自愈新增离屏检测：尺寸正常但完全移出屏幕的窗口现在也会被自动拉回可见区域\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.9.5_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.9.5_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.9.5_portable_x64.zip`, extract and run\n",
+  "version": "0.10.0",
+  "tag": "v0.10.0",
+  "published_at": "2026-07-22T17:11:16Z",
+  "release_notes": "### 新功能\n- 分享战绩图新增匿名模式：可选「匿名他人」或「全部匿名」，被匿名玩家的 ID 显示为其使用的英雄名\n- 对局总结中点击玩家名可直接跳转到该玩家的战绩查询页\n\n### 修复\n- 修复匿名（隐藏昵称）玩家在选人阶段和进入游戏后不显示所选英雄的问题\n- 修复隐藏昵称玩家在对局内无法解析真实名字的问题（斗魂竞技场等全模式均已支持）\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.10.0_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.10.0_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.10.0_portable_x64.zip`, extract and run\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.9.5/Futaba_v0.9.5_x64_installer.exe",
-    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.9.5/Futaba_v0.9.5_portable_x64.exe",
-    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.9.5/Futaba_v0.9.5_portable_x64.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.10.0/Futaba_v0.10.0_x64_installer.exe",
+    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.10.0/Futaba_v0.10.0_portable_x64.exe",
+    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.10.0/Futaba_v0.10.0_portable_x64.zip"
   }
 }

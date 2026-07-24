@@ -1,11 +1,11 @@
 {
-  "version": "0.10.0",
-  "tag": "v0.10.0",
-  "published_at": "2026-07-22T17:11:16Z",
-  "release_notes": "### 新功能\n- 分享战绩图新增匿名模式：可选「匿名他人」或「全部匿名」，被匿名玩家的 ID 显示为其使用的英雄名\n- 对局总结中点击玩家名可直接跳转到该玩家的战绩查询页\n\n### 修复\n- 修复匿名（隐藏昵称）玩家在选人阶段和进入游戏后不显示所选英雄的问题\n- 修复隐藏昵称玩家在对局内无法解析真实名字的问题（斗魂竞技场等全模式均已支持）\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.10.0_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.10.0_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.10.0_portable_x64.zip`, extract and run\n",
+  "version": "0.11.0",
+  "tag": "v0.11.0",
+  "published_at": "2026-07-24T14:59:13Z",
+  "release_notes": "### 新功能\n- 大乱斗/海克斯大乱斗选人支持两阶段池锁定：初选期只能从系统提供的初始英雄中选择，交换阶段开启后整池解禁\n- 设置-分享新增分享图实时预览：调整选项即时查看效果，可切换 5v5 / 海克斯大乱斗视图\n\n### 优化\n- 设置页全面重构：紧凑分组卡片 + 双栏布局，说明收进问号气泡，页面更清爽\n- 设置 tab 精简为 7 个：快捷键并入通用、OP.GG 并入游戏\n- 接受/拒绝对局按钮对齐全新设计语言\n- 关于页新增联系方式（QQ 群一键复制、oopz 频道等）；网络页访问地址可点击直接打开\n\n### 修复\n- 修复全新安装前两次启动显示深色主题的问题，默认配色统一为浅色\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.11.0_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.11.0_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.11.0_portable_x64.zip`, extract and run\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.10.0/Futaba_v0.10.0_x64_installer.exe",
-    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.10.0/Futaba_v0.10.0_portable_x64.exe",
-    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.10.0/Futaba_v0.10.0_portable_x64.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.11.0/Futaba_v0.11.0_x64_installer.exe",
+    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.11.0/Futaba_v0.11.0_portable_x64.exe",
+    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.11.0/Futaba_v0.11.0_portable_x64.zip"
   }
 }

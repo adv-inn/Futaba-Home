@@ -1,11 +1,11 @@
 {
-  "version": "0.11.0",
-  "tag": "v0.11.0",
-  "published_at": "2026-07-24T14:59:13Z",
-  "release_notes": "### 新功能\n- 大乱斗/海克斯大乱斗选人支持两阶段池锁定：初选期只能从系统提供的初始英雄中选择，交换阶段开启后整池解禁\n- 设置-分享新增分享图实时预览：调整选项即时查看效果，可切换 5v5 / 海克斯大乱斗视图\n\n### 优化\n- 设置页全面重构：紧凑分组卡片 + 双栏布局，说明收进问号气泡，页面更清爽\n- 设置 tab 精简为 7 个：快捷键并入通用、OP.GG 并入游戏\n- 接受/拒绝对局按钮对齐全新设计语言\n- 关于页新增联系方式（QQ 群一键复制、oopz 频道等）；网络页访问地址可点击直接打开\n\n### 修复\n- 修复全新安装前两次启动显示深色主题的问题，默认配色统一为浅色\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.11.0_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.11.0_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.11.0_portable_x64.zip`, extract and run\n",
+  "version": "0.12.0",
+  "tag": "v0.12.0",
+  "published_at": "2026-08-02T03:07:09Z",
+  "release_notes": "### 新功能\n- 怀旧服系列全面支持：经典模式与海克斯大乱斗经典版的对局识别、战绩显示与筛选，创建房间时怀旧队列显示专属徽章\n- 怀旧模式数据接入：经典模式出装/分路数据、怀旧海斗强化推荐；榜单页新增「经典模式」与「海克斯大乱斗经典版」查询\n- 房间页可显示敌方隐藏昵称玩家所用的英雄（此前只显示「匿名玩家」）\n\n### 优化\n- 怀旧海斗局内强化浮窗按登场率 + 胜率展示（与斗魂竞技场一致）\n- OP.GG 推荐浮窗强化列表在窄窗口下自适应布局，修复文字重叠\n\n### 修复\n- 怀旧海斗强化推荐显示未知梯队/错误名称的问题\n- 稻草人对局中英雄识别失败导致的显示异常\n- 敌方隐藏昵称玩家在对局开始后正确补入队伍列表\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.12.0_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.12.0_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.12.0_portable_x64.zip`, extract and run\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.11.0/Futaba_v0.11.0_x64_installer.exe",
-    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.11.0/Futaba_v0.11.0_portable_x64.exe",
-    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.11.0/Futaba_v0.11.0_portable_x64.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.12.0/Futaba_v0.12.0_x64_installer.exe",
+    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.12.0/Futaba_v0.12.0_portable_x64.exe",
+    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.12.0/Futaba_v0.12.0_portable_x64.zip"
   }
 }

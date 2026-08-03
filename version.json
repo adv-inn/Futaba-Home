@@ -1,11 +1,11 @@
 {
-  "version": "0.12.0",
-  "tag": "v0.12.0",
-  "published_at": "2026-08-02T03:07:09Z",
-  "release_notes": "### 新功能\n- 怀旧服系列全面支持：经典模式与海克斯大乱斗经典版的对局识别、战绩显示与筛选，创建房间时怀旧队列显示专属徽章\n- 怀旧模式数据接入：经典模式出装/分路数据、怀旧海斗强化推荐；榜单页新增「经典模式」与「海克斯大乱斗经典版」查询\n- 房间页可显示敌方隐藏昵称玩家所用的英雄（此前只显示「匿名玩家」）\n\n### 优化\n- 怀旧海斗局内强化浮窗按登场率 + 胜率展示（与斗魂竞技场一致）\n- OP.GG 推荐浮窗强化列表在窄窗口下自适应布局，修复文字重叠\n\n### 修复\n- 怀旧海斗强化推荐显示未知梯队/错误名称的问题\n- 稻草人对局中英雄识别失败导致的显示异常\n- 敌方隐藏昵称玩家在对局开始后正确补入队伍列表\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.12.0_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.12.0_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.12.0_portable_x64.zip`, extract and run\n",
+  "version": "0.13.0",
+  "tag": "v0.13.0",
+  "published_at": "2026-08-03T13:15:06Z",
+  "release_notes": "### 新功能\n- 玩家评价 Tag 系统：房间页/局内悬浮窗/战绩页显示连胜、极高胜率、Futaba 综合评分、伤害/承伤/经济占比、难抓/好抓等标签；支持手动标记玩家与历史遭遇提示（上局队友/上局对手）\n- 打野路线分析与开局推测：战绩页独立窗口展示打野首清起手（红蓝 buff/F6/三狼/蛤蟆/石头人）并按英雄分组；局内悬浮窗新增「打野推测」页，开局即给出双方打野的起手推测\n- 云顶之弈支持：TFT 战绩页、局内花名册、分享图与登场棋子记录，标题栏一键切换产品线\n- 战绩单场高光标签：多杀、单杀、最高伤害/承伤/治疗/参团等，分享战绩图同步展示\n- 排位对局显示分路位置标签\n\n### 优化\n- 战绩数据源升级：全员对局数据一次拉取，战绩加载显著提速，占比/评分数据更完整\n- 选人阶段可还原排位匿名玩家身份，战绩分析不再缺席\n- 近期数据统计区重构：评价标签替代原占比文字，信息更直观\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.13.0_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.13.0_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.13.0_portable_x64.zip`, extract and run\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.12.0/Futaba_v0.12.0_x64_installer.exe",
-    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.12.0/Futaba_v0.12.0_portable_x64.exe",
-    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.12.0/Futaba_v0.12.0_portable_x64.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.13.0/Futaba_v0.13.0_x64_installer.exe",
+    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.13.0/Futaba_v0.13.0_portable_x64.exe",
+    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.13.0/Futaba_v0.13.0_portable_x64.zip"
   }
 }

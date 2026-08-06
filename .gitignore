@@ -1,2 +1,5 @@
 node_modules/
-css/tailwind.css
+
+# 注：css/tailwind.css 已纳入版本控制（不再忽略）。
+# 原因：Pages 改为 legacy 模式（直接托管 main 分支），产物必须在库里才能被托管；
+# 这样 push 即部署，不依赖 GitHub Actions —— 故障时仍有人工推送通道。

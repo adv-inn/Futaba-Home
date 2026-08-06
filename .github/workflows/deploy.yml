@@ -1,53 +1,52 @@
-name: Deploy to GitHub Pages
+name: Verify build output
+
+# Pages 已改为 legacy 模式（直接托管 main 分支根目录），**部署不再经由本工作流**
+# —— push 到 main 即由 GitHub Pages 自动发布。这样即使 Actions 故障，仍可通过
+# 本地构建 + git push 完成部署（人工通道）。
+#
+# 本工作流退化为“校验”角色：确认提交进库的 css/tailwind.css 与 src 源一致，
+# 防止有人改了 src 却忘记重新构建、导致线上样式与源码不同步。
+# 它失败**不影响**站点部署，只是提醒需要补一次构建。
 
 on:
   push:
     branches: [main]
-
-  # Allow manual trigger
+    paths:
+      - 'src/**'
+      - 'css/tailwind.css'
+      - 'tailwind.config.js'
+      - 'package.json'
+      - 'package-lock.json'
+      - '**/*.html'
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-# Only one deployment at a time
-concurrency:
-  group: pages
-  cancel-in-progress: false
 
 jobs:
-  deploy:
-    name: Deploy
+  verify:
+    name: Verify tailwind.css is up to date
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Build Tailwind CSS
-        run: npm run build:css
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: '.'
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Rebuild CSS and compare
+        run: |
+          cp css/tailwind.css /tmp/committed.css
+          npm run build:css
+          if ! diff -q /tmp/committed.css css/tailwind.css >/dev/null; then
+            echo "::error::css/tailwind.css 与 src 源不一致 —— 请在本地执行 npm run build:css 并提交产物"
+            diff /tmp/committed.css css/tailwind.css | head -20 || true
+            exit 1
+          fi
+          echo "✅ css/tailwind.css 与源一致"

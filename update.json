@@ -1,11 +1,11 @@
 {
-  "version": "0.13.0",
-  "notes": "See https://github.com/adv-inn/futaba/releases/tag/v0.13.0",
-  "pub_date": "2026-08-03T13:14:27Z",
+  "version": "0.14.0",
+  "notes": "See https://github.com/adv-inn/futaba/releases/tag/v0.14.0",
+  "pub_date": "2026-08-06T13:08:27Z",
   "platforms": {
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTVkVXUHlOaTJ3SVpRaC90ZTNVaW1RVTRHc2EzRGswMjJpMllJcmVWZEUvdVorNTVYaW16MW5BbVptdjl4NC93OUxXM2c0bE95M2I2bGpCdDd2cTZjV0lKTkR5eDI0d1E4PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1NzYyODY2CWZpbGU6RnV0YWJhXzAuMTMuMF94NjQtc2V0dXAubnNpcy56aXAKMzQ3bzVLWnVFQjRwVndVWWdJZmJsM3d6dExZc2p6aVZHTjNaa0JDL0hScWhzVUlRQzZQTXRnaTJvbVd6c01sMU85RHlaUkM3MUY3NHY0VDI1d2d6RHc9PQo=",
-      "url": "https://github.com/adv-inn/futaba/releases/download/v0.13.0/Futaba_v0.13.0_x64_installer.nsis.zip"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTVkVXUHlOaTJ3SVRQM0gvcXNXRmxhbUNFMGh2MTJPcVkwK3k1RzdoNU1EOUpzNzN0NVlnQzA0RHJoYmZaakdwalFudXBpTVJKWEg2LzFOWmgwcUVBNWJramYzUER0RVFvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2MDIxNzA2CWZpbGU6RnV0YWJhXzAuMTQuMF94NjQtc2V0dXAubnNpcy56aXAKMjAvMVRrdFowUWhGaW1aS0JnS1ZvTDVKQUY5ZVFBbitiZmZxdENmcHgyaGRGenh5ekd2dkxtSjFtM2V4OXJVeGlFSjBsZ2M5NHNlR0NZb0tBTDI5RGc9PQo=",
+      "url": "https://github.com/adv-inn/futaba/releases/download/v0.14.0/Futaba_v0.14.0_x64_installer.nsis.zip"
     }
   }
 }

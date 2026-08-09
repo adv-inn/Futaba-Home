@@ -1,11 +1,11 @@
 {
-  "version": "0.14.0",
-  "tag": "v0.14.0",
-  "published_at": "2026-08-06T13:09:02Z",
-  "release_notes": "### 新功能\n- 战绩查询支持跨大区：可查询任意腾讯大区玩家的战绩\n- 局内 AI 出装推荐支持更长对话：自动识别模型上下文容量，接近上限时压缩历史而非中断\n- LLM 设置支持手动填写模型名（部分自建服务不提供模型列表）\n\n### 优化\n- 房间页与局内玩家数据加载速度提升约 4 倍（十人从约 9 秒降至 2.3 秒）\n- 悬浮窗默认快捷键由 F9 改为 F6\n- 组队识别更准确：当前对局改用精确判定，历史推断不再把多次遇到的对手误判为队友\n- 设置页显示所选模型的上下文容量\n\n### 修复\n- 匿名玩家（隐藏昵称）昵称无法解析\n- 匿名玩家已显示昵称但战绩与段位始终空白\n- 点击匿名玩家跳转战绩页时搜索框显示一串标识符而非玩家 ID\n- 保存 LLM 配置时代理设置也会提示保存成功\n- 局内 AI 出装推荐的重算间隔修改后本局不生效\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.14.0_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.14.0_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.14.0_portable_x64.zip`, extract and run\n",
+  "version": "0.14.1",
+  "tag": "v0.14.1",
+  "published_at": "2026-08-09T16:53:58Z",
+  "release_notes": "### 修复\n- 修复海克斯强化识别浮窗在对局结束时残留在屏幕上的问题\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.14.1_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.14.1_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.14.1_portable_x64.zip`, extract and run\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.14.0/Futaba_v0.14.0_x64_installer.exe",
-    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.14.0/Futaba_v0.14.0_portable_x64.exe",
-    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.14.0/Futaba_v0.14.0_portable_x64.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.14.1/Futaba_v0.14.1_x64_installer.exe",
+    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.14.1/Futaba_v0.14.1_portable_x64.exe",
+    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.14.1/Futaba_v0.14.1_portable_x64.zip"
   }
 }

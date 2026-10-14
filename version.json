@@ -1,11 +1,11 @@
 {
-  "version": "0.14.1",
-  "tag": "v0.14.1",
-  "published_at": "2026-08-09T16:53:58Z",
-  "release_notes": "### 修复\n- 修复海克斯强化识别浮窗在对局结束时残留在屏幕上的问题\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.14.1_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.14.1_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.14.1_portable_x64.zip`, extract and run\n",
+  "version": "0.15.0",
+  "tag": "v0.15.0",
+  "published_at": "2026-10-14T18:11:54Z",
+  "release_notes": ,
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.14.1/Futaba_v0.14.1_x64_installer.exe",
-    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.14.1/Futaba_v0.14.1_portable_x64.exe",
-    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.14.1/Futaba_v0.14.1_portable_x64.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.15.0/Futaba_v0.15.0_x64_installer.exe",
+    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.15.0/Futaba_v0.15.0_portable_x64.exe",
+    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.15.0/Futaba_v0.15.0_portable_x64.zip"
   }
 }

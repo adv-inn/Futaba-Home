@@ -88,9 +88,11 @@
   // ========== Download Card + Mirror Switcher ==========
 
   var MIRROR_KEY = 'futaba-static-mirror';
+  // Mirror prefix is prepended to the FULL GitHub URL (gh-proxy style):
+  //   https://gh-proxy.com/https://github.com/adv-inn/Futaba/releases/download/...
   var MIRRORS = {
-    github: { prefix: 'https://github.com/' },
-    xget:   { prefix: 'https://xget.xi-xu.me/gh/' },
+    github:  { prefix: '' },
+    ghproxy: { prefix: 'https://gh-proxy.com/' },
   };
   var ASSETS = ['installer', 'portable_exe', 'portable_zip'];
   var ASSET_ELEMENT_IDS = {
@@ -113,10 +115,10 @@
 
   function rewriteUrl(githubUrl, mirror) {
     if (!githubUrl) return '#';
-    if (mirror === 'github' || !MIRRORS[mirror]) return githubUrl;
+    if (!MIRRORS[mirror]) return githubUrl;
     // Only rewrite real github.com download URLs; leave anything else alone.
     if (githubUrl.indexOf('https://github.com/') !== 0) return githubUrl;
-    return MIRRORS[mirror].prefix + githubUrl.substring('https://github.com/'.length);
+    return MIRRORS[mirror].prefix + githubUrl;
   }
 
   function applyDownloadLinks(mirror) {
@@ -188,6 +190,42 @@
       });
   }
 
+  // ---- Download count (GitHub Releases API, all versions summed) ----
+
+  var RELEASES_API = 'https://api.github.com/repos/adv-inn/futaba/releases?per_page=100';
+  var totalDownloads = null;
+
+  function applyDownloadCount(lang) {
+    var el = document.getElementById('downloadCount');
+    if (!el) return;
+    if (totalDownloads === null) { el.hidden = true; return; }
+    var dict = LANGS[lang || getStoredLang()] || LANGS.zh;
+    document.getElementById('downloadCountText').textContent =
+      dict['download.count'].replace('{n}', totalDownloads.toLocaleString('en-US'));
+    el.hidden = false;
+  }
+
+  function loadDownloadCount() {
+    return fetch(RELEASES_API, { headers: { Accept: 'application/vnd.github+json' } })
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function (releases) {
+        totalDownloads = releases.reduce(function (sum, rel) {
+          return sum + (rel.assets || []).reduce(function (s, a) {
+            return /\.(exe|zip)$/i.test(a.name) ? s + a.download_count : s;
+          }, 0);
+        }, 0);
+        applyDownloadCount();
+      })
+      .catch(function (err) {
+        // Stat line stays hidden; the card works fine without it.
+        // eslint-disable-next-line no-console
+        console.warn('[futaba-home] releases API load failed:', err);
+      });
+  }
+
   function initDownloadCard() {
     var switcher = document.getElementById('mirrorSwitcher');
     if (switcher) {
@@ -201,6 +239,7 @@
     // even before version.json finishes loading.
     setMirror(getStoredMirror());
     loadVersionData();
+    loadDownloadCount();
   }
 
   // ========== i18n ==========
@@ -246,11 +285,12 @@
       // Download card
       'download.mirror': '镜像源',
       'download.mirror.github': 'GitHub',
-      'download.mirror.xget': '国内镜像',
+      'download.mirror.ghproxy': '国内镜像',
       'download.installer': '下载安装版',
       'download.portable_exe': '便携版 EXE',
       'download.portable_zip': '便携版 ZIP',
       'download.error': '版本信息加载失败，将跳转至 GitHub Releases',
+      'download.count': '累计下载 {n} 次',
     },
     en: {
       'hero.subtitle': 'A dual-platform League of Legends client built with Tauri — simple and efficient',
@@ -291,11 +331,12 @@
       // Download card
       'download.mirror': 'Mirror',
       'download.mirror.github': 'GitHub',
-      'download.mirror.xget': 'China Mirror',
+      'download.mirror.ghproxy': 'China Mirror',
       'download.installer': 'Download Installer',
       'download.portable_exe': 'Portable EXE',
       'download.portable_zip': 'Portable ZIP',
       'download.error': 'Failed to fetch release info — falling back to GitHub Releases',
+      'download.count': '{n} downloads',
     },
     ja: {
       'hero.subtitle': 'Tauri で開発されたデュアルプラットフォーム対応の LoL クライアント — シンプルで高効率',
@@ -336,11 +377,12 @@
       // Download card
       'download.mirror': 'ミラー',
       'download.mirror.github': 'GitHub',
-      'download.mirror.xget': '国内ミラー',
+      'download.mirror.ghproxy': '国内ミラー',
       'download.installer': 'インストーラー',
       'download.portable_exe': 'ポータブル EXE',
       'download.portable_zip': 'ポータブル ZIP',
       'download.error': 'バージョン情報の取得に失敗しました。GitHub Releases にリダイレクトします',
+      'download.count': '累計 {n} ダウンロード',
     },
   };
 
@@ -364,6 +406,8 @@
         el.textContent = dict[key];
       }
     });
+
+    applyDownloadCount(lang);
 
     // Update lang switcher buttons
     document.querySelectorAll('#langSwitcher button').forEach(function (btn) {

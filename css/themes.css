@@ -900,6 +900,22 @@ footer {
   user-select: none;
 }
 
+.download-count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-secondary);
+  opacity: 0.8;
+  margin-top: -4px;
+}
+
+.download-count[hidden] {
+  display: none;
+}
+
 .download-status {
   font-size: 0.78rem;
   text-align: center;
@@ -1017,6 +1033,12 @@ footer {
 .theme-persona5 .download-secondary:hover {
   color: #ff0000;
   border-bottom-color: #ff0000;
+}
+
+.theme-persona5 .download-count {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 1px;
+  font-size: 0.95rem;
 }
 
 .theme-persona5 .download-status {

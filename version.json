@@ -1,11 +1,11 @@
 {
-  "version": "0.15.0",
-  "tag": "v0.15.0",
-  "published_at": "2026-10-14T18:12:14Z",
-  "release_notes": "### 新功能\n- 进入对局时默认停留在房间页，可在「通用设置 → 页面切换」中开启自动跳转到对局页\n\n### 优化\n- 海克斯大乱斗：海克斯识别只在开局、阵亡等弹窗可能出现的时机截屏，消除对局中每秒一次的间歇性卡顿\n- 自动应用（符文 / 技能 / 装备集）的状态提示按真实结果显示，写入失败或 OP.GG 数据缺失时会明确提示，不再静默\n\n### 修复\n- 修复长时间运行后与游戏客户端的事件连接断开却不重连，导致自动应用失效、需重启才能恢复的问题\n- 修复多局后海克斯识别开销累积导致的卡顿\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.15.0_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.15.0_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.15.0_portable_x64.zip`, extract and run\n",
+  "version": "0.16.0",
+  "tag": "v0.16.0",
+  "published_at": "2026-10-16T15:51:56Z",
+  "release_notes": "### 新功能\n- 分享战绩支持多选玩家：最多 5 人纵向排布，附输出 / 经济条形图、组排共玩胜率与近期交手胜负\n- 对局总结显示全部玩家的组排徽章（含敌方）\n- 分享图全面重排：2x 高清渲染、本局皮肤原画横幅、卡片内符文 / 海克斯\n- 对局详情玩家行数据列改为数值 + 进度条\n- 自动接受延迟上限放宽到 8 秒\n- 局域网访问令牌固定化，可手动修改或重新随机\n\n### 优化\n- 国内镜像下载切换到更快的节点（自动更新与 PaddleOCR 引擎下载）\n- 海克斯扫描开支整治 + 开局预热，首次识别更快、更省资源\n- 去掉局内常驻动画，降低渲染开销\n- 准备检查控件重排：实心接受 + 幽灵拒绝\n- 大乱斗 / 海克斯 / Arena 不再显示无意义的补刀与视野\n- 分享图页脚居中、玩家 ID 更醒目\n\n### 修复\n- 战绩查询遇拳头 / 腾讯服务器故障时自动重试，并明确提示是服务器问题\n- 房间周期内阶段切换不再被拽回房间页\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.16.0_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.16.0_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.16.0_portable_x64.zip`, extract and run\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.15.0/Futaba_v0.15.0_x64_installer.exe",
-    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.15.0/Futaba_v0.15.0_portable_x64.exe",
-    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.15.0/Futaba_v0.15.0_portable_x64.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.16.0/Futaba_v0.16.0_x64_installer.exe",
+    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.16.0/Futaba_v0.16.0_portable_x64.exe",
+    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.16.0/Futaba_v0.16.0_portable_x64.zip"
   }
 }

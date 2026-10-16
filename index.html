@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Futaba</title>
-  <meta name="description" content="Futaba — 一款使用 Tauri 开发的支持双端操作的英雄联盟客户端，简洁，高效。集成 OP.GG 数据、AI 战术分析、游戏内悬浮窗和移动端支持。" />
+  <meta name="description" content="Futaba — 一款使用 Tauri 开发的支持双端操作的英雄联盟客户端，简洁，高效。海克斯强化 OCR 识别、OP.GG 深度集成、移动端扫码操控、AI 战术分析与游戏内悬浮窗。" />
 
   <!-- FOUC Prevention: apply theme before any rendering -->
   <script>
@@ -136,21 +136,105 @@
           </button>
           <div class="cascade-container">
             <div class="cascade-card" data-theme="light" data-switch="clean-light">
-              <img src="./assets/light.png" alt="Clean Light 主题预览" draggable="false" />
+              <img src="./assets/theme-light.png" alt="Clean Light 主题预览" draggable="false" />
               <span class="cascade-label">Light</span>
             </div>
             <div class="cascade-card" data-theme="dark" data-switch="clean-dark">
-              <img src="./assets/dark.png" alt="Clean Dark 主题预览" draggable="false" />
+              <img src="./assets/theme-dark.png" alt="Clean Dark 主题预览" draggable="false" />
               <span class="cascade-label">Dark</span>
             </div>
             <div class="cascade-card" data-theme="p5" data-switch="persona5">
-              <img src="./assets/p5.png" alt="Persona 5 主题预览" draggable="false" />
+              <img src="./assets/theme-p5.png" alt="Persona 5 主题预览" draggable="false" />
               <span class="cascade-label">P5</span>
             </div>
           </div>
           <button class="cascade-nav cascade-nav-next" id="cascadeNext" aria-label="下一个主题">
             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
           </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       HIGHLIGHTS SECTION
+       ======================== -->
+  <section id="highlights" class="py-20 sm:py-28 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16 scroll-reveal">
+        <h2 class="p5-section-title clean-section-title text-3xl sm:text-4xl mb-4" data-i18n="highlights.title">核心功能</h2>
+        <p class="p5-subtitle clean-subtitle mt-6 text-base max-w-2xl mx-auto" data-i18n="highlights.subtitle">
+          Futaba 最想让你看到的三件事
+        </p>
+      </div>
+
+      <div class="highlight-list">
+        <!-- 1. Hextech OCR (featured: full-width) -->
+        <div class="highlight-row highlight-row-featured scroll-reveal">
+          <div class="highlight-text">
+            <p class="highlight-kicker">01 · Hextech OCR</p>
+            <h3 class="highlight-title" data-i18n="highlight.hextech.title">海克斯强化识别</h3>
+            <p class="highlight-desc" data-i18n="highlight.hextech.desc">
+              海克斯大乱斗与斗魂竞技场的强化选项，客户端 API 根本不提供。Futaba 直接截屏 OCR 识别三张卡牌，匹配 OP.GG 数据，把梯队、选取率和强度叠在每张卡牌下方，选强化不再靠猜。
+            </p>
+            <ul class="highlight-points">
+              <li data-i18n="highlight.hextech.p1">纯屏幕识别，不读取游戏内存，不改游戏文件</li>
+              <li data-i18n="highlight.hextech.p2">三张卡牌各自独立浮窗，位置跟随卡牌</li>
+              <li data-i18n="highlight.hextech.p3">支持海克斯大乱斗与斗魂竞技场</li>
+            </ul>
+          </div>
+          <div class="highlight-media">
+            <div class="showcase-img">
+              <img src="./assets/hextech-overlay.jpg" alt="海克斯强化识别浮窗" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. OP.GG -->
+        <div class="highlight-row scroll-reveal">
+          <div class="highlight-text">
+            <p class="highlight-kicker">02 · OP.GG</p>
+            <h3 class="highlight-title" data-i18n="highlight.opgg.title">OP.GG 深度兼容</h3>
+            <p class="highlight-desc" data-i18n="highlight.opgg.desc">
+              排位、大乱斗、海克斯大乱斗、斗魂竞技场，全模式接入 OP.GG 实时数据。英雄梯队、胜率、出装、符文、海克斯强化推荐，选人阶段一键应用，进游戏直接开打。
+            </p>
+            <ul class="highlight-points">
+              <li data-i18n="highlight.opgg.p1">版本强势出装 / 符文 / 召唤师技能自动应用</li>
+              <li data-i18n="highlight.opgg.p2">经典模式 Counter 对位，大乱斗 ARAM 平衡调整</li>
+              <li data-i18n="highlight.opgg.p3">海克斯强化按稀有度分级，S / A 梯队一目了然</li>
+            </ul>
+          </div>
+          <div class="highlight-media">
+            <div class="showcase-img highlight-media-compact">
+              <img src="./assets/opgg-detail.png" alt="OP.GG 英雄详情与海克斯强化" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Mobile -->
+        <div class="highlight-row scroll-reveal">
+          <div class="highlight-text">
+            <p class="highlight-kicker">03 · Mobile</p>
+            <h3 class="highlight-title" data-i18n="highlight.mobile.title">移动端适配</h3>
+            <p class="highlight-desc" data-i18n="highlight.mobile.desc">
+              局域网开启数据共享，手机扫码即可打开 Futaba Mobile。接受对局、抢英雄、看出装、查海克斯推荐，离开电脑也不耽误。
+            </p>
+            <ul class="highlight-points">
+              <li data-i18n="highlight.mobile.p1">无需安装 App，浏览器扫码直达</li>
+              <li data-i18n="highlight.mobile.p2">mDNS 广播，记住 futaba.local 一个地址就够</li>
+              <li data-i18n="highlight.mobile.p3">远程操作可单独关闭，只在可信网络使用</li>
+            </ul>
+          </div>
+          <div class="highlight-media">
+            <div class="highlight-phones">
+              <div class="showcase-img">
+                <img src="./assets/mobile-pick.png" alt="移动端选人" loading="lazy" />
+              </div>
+              <div class="showcase-img">
+                <img src="./assets/mobile-opgg.png" alt="移动端 OP.GG 海克斯推荐" loading="lazy" />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -194,7 +278,7 @@
           </div>
           <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);" data-i18n="feature.history.title">战绩查询</h3>
           <p style="color: var(--text-secondary);" class="text-sm leading-relaxed" data-i18n="feature.history.desc">
-            查看详细对局历史记录，包括KDA、伤害数据和装备详情
+            查看详细对局历史记录，KDA、伤害、装备一应俱全，还能一键生成战绩分享图
           </p>
         </div>
 
@@ -250,16 +334,17 @@
           </p>
         </div>
 
-        <!-- Feature 7: Auto Apply -->
+        <!-- Feature 7: Hextech OCR -->
         <div class="p5-card clean-card p-6 scroll-reveal delay-1">
           <div class="text-3xl mb-4">
             <svg class="w-10 h-10" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182M21.015 4.356v4.992" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
           </div>
-          <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);" data-i18n="feature.auto.title">自动应用</h3>
-          <p style="color: var(--text-secondary);" class="text-sm leading-relaxed" data-i18n="feature.auto.desc">
-            选人阶段自动应用符文、召唤师技能和装备集，告别手动配置
+          <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);" data-i18n="feature.hextech.title">海克斯识别</h3>
+          <p style="color: var(--text-secondary);" class="text-sm leading-relaxed" data-i18n="feature.hextech.desc">
+            海克斯大乱斗 / 斗魂竞技场开局截屏 OCR 识别三张强化卡，叠加 OP.GG 梯队与选取率
           </p>
         </div>
 
@@ -306,13 +391,35 @@
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 scroll-reveal delay-1">
         <div class="showcase-img">
-          <img src="./assets/create-room.png" alt="创建房间" loading="lazy" />
+          <img src="./assets/app-create-room.png" alt="创建房间" loading="lazy" />
         </div>
         <div class="showcase-img">
-          <img src="./assets/history.png" alt="战绩查询" loading="lazy" />
+          <img src="./assets/app-match-history.png" alt="战绩查询" loading="lazy" />
         </div>
         <div class="showcase-img">
-          <img src="./assets/rank-bp.png" alt="排位 Ban/Pick" loading="lazy" />
+          <img src="./assets/app-rank-pick.png" alt="排位 Ban/Pick" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       SHOWCASE: SHARE CARDS
+       ======================== -->
+  <section id="showcase-share" class="py-20 sm:py-28 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12 scroll-reveal">
+        <h2 class="p5-section-title clean-section-title text-3xl sm:text-4xl mb-4" data-i18n="showcase.share.title">战绩分享</h2>
+        <p class="p5-subtitle clean-subtitle mt-6 text-base max-w-2xl mx-auto" data-i18n="showcase.share.subtitle">
+          对局结束一键生成分享图，单人战绩或多人同框，带皮肤原画、海克斯选择与队内占比
+        </p>
+      </div>
+      <div class="share-grid scroll-reveal delay-1">
+        <div class="showcase-img">
+          <img src="./assets/share-match.png" alt="单人战绩分享图" loading="lazy" />
+        </div>
+        <div class="showcase-img">
+          <img src="./assets/share-team.png" alt="多人战绩分享图" loading="lazy" />
         </div>
       </div>
     </div>
@@ -337,7 +444,7 @@
           <img src="./assets/opgg-detail.png" alt="OP.GG 详情" loading="lazy" />
         </div>
         <div class="showcase-img">
-          <img src="./assets/counter-show.png" alt="Counter 对位" loading="lazy" />
+          <img src="./assets/opgg-counter.png" alt="Counter 对位" loading="lazy" />
         </div>
       </div>
     </div>
@@ -358,7 +465,7 @@
       <!-- Network Server Screenshot (wide) -->
       <div class="max-w-3xl mx-auto mb-8 scroll-reveal delay-1">
         <div class="showcase-img">
-          <img src="./assets/network-server.png" alt="局域网服务" loading="lazy" />
+          <img src="./assets/mobile-server.png" alt="局域网服务" loading="lazy" />
         </div>
       </div>
 
@@ -368,7 +475,7 @@
           <img src="./assets/mobile-create-room.png" alt="移动端创建房间" loading="lazy" />
         </div>
         <div class="showcase-img">
-          <img src="./assets/mobile-bp.png" alt="移动端 Ban/Pick" loading="lazy" />
+          <img src="./assets/mobile-pick.png" alt="移动端 Ban/Pick" loading="lazy" />
         </div>
         <div class="showcase-img">
           <img src="./assets/mobile-chat.png" alt="移动端聊天" loading="lazy" />

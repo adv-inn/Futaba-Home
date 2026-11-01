@@ -1,11 +1,11 @@
 {
-  "version": "0.19.0",
-  "tag": "v0.19.0",
-  "published_at": "2026-11-01T02:54:48Z",
-  "release_notes": "### 新功能\n- 海克斯强化识别开箱即用：高精度 OCR 引擎内置于程序，不再需要下载安装；识别功能默认开启\n- 游戏为独占全屏时自动改为无边框窗口：客户端未运行时静默完成，运行中则顶部提醒并在设置中提供一键修改\n\n### 优化\n- 强化名称识别准确率提升：修复两字名称漏字（如「火狐」）与形近字误识（如「喂呜喂呜」）\n- 识别引擎体积从约 300MB 降至约 20MB，每局不再启动独立进程，内存占用大幅下降\n\n### 修复\n- 从游戏切回时侧边栏图标旁偶现黑色方框\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.19.0_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.19.0_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.19.0_portable_x64.zip`, extract and run\n",
+  "version": "0.19.1",
+  "tag": "v0.19.1",
+  "published_at": "2026-11-01T13:56:26Z",
+  "release_notes": "### 修复\n- 自动更新时安装器偶发「无法终止 Futaba。请关闭后再试」：安装器现在会等旧版本完全退出后再继续（从本版起生效；若本次升级仍遇到，点「取消」后重新运行一次安装器即可）\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.19.1_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.19.1_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.19.1_portable_x64.zip`, extract and run\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.19.0/Futaba_v0.19.0_x64_installer.exe",
-    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.19.0/Futaba_v0.19.0_portable_x64.exe",
-    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.19.0/Futaba_v0.19.0_portable_x64.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.19.1/Futaba_v0.19.1_x64_installer.exe",
+    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.19.1/Futaba_v0.19.1_portable_x64.exe",
+    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.19.1/Futaba_v0.19.1_portable_x64.zip"
   }
 }

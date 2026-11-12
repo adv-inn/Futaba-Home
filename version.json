@@ -1,11 +1,11 @@
 {
-  "version": "0.20.1",
-  "tag": "v0.20.1",
-  "published_at": "2026-11-12T11:36:18Z",
-  "release_notes": "### 修复\n- 中文界面下对局结束页的海克斯强化名称显示为英文\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.20.1_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.20.1_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.20.1_portable_x64.zip`, extract and run\n",
+  "version": "0.20.2",
+  "tag": "v0.20.2",
+  "published_at": "2026-11-12T22:47:48Z",
+  "release_notes": "### 修复\n- 自动抢英雄只在 Futaba 启动后的第一局生效\n- 4K 等高分辨率下偶发无法识别海克斯强化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.20.2_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.20.2_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.20.2_portable_x64.zip`, extract and run\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.20.1/Futaba_v0.20.1_x64_installer.exe",
-    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.20.1/Futaba_v0.20.1_portable_x64.exe",
-    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.20.1/Futaba_v0.20.1_portable_x64.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.20.2/Futaba_v0.20.2_x64_installer.exe",
+    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.20.2/Futaba_v0.20.2_portable_x64.exe",
+    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.20.2/Futaba_v0.20.2_portable_x64.zip"
   }
 }

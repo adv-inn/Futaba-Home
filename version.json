@@ -1,11 +1,11 @@
 {
-  "version": "0.20.0",
-  "tag": "v0.20.0",
-  "published_at": "2026-11-12T03:02:31Z",
-  "release_notes": "### 新功能\n- 选人阶段在客户端上直接叠加英雄梯度、胜率、推荐面板与红黑榜\n- 房间页选人池显示英雄梯度与胜率，本人卡片支持更换皮肤与炫彩\n- 海斗数据新增强化出装计算器：选多个强化，组合推荐装备；强化组合可一键放入计算器\n- 独立小窗：海克斯大乱斗显示海斗数据，可与 OP.GG 各模式无缝切换\n- 进入对局时海斗数据页自动打开当前英雄详情\n- 分享图重新设计：新增对局概览、MVP/SVP 评分与每人高光标签\n\n### 优化\n- 海斗英雄详情重新排版：概要信息合并，强化列表与计算器、核心出装与强化组合并排显示\n- 海斗数据页导航与设置与 OP.GG 页对齐，详情以标签页形式显示在对应榜单旁\n- 「保持原位」未带闪现时按战绩习惯放置技能位置\n\n### 修复\n- 经典模式英雄名称显示为「英雄 600xx」\n- 部分关闭方式会导致托盘无法恢复主窗口\n- WeGame 安装目录含中文时路径乱码\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.20.0_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.20.0_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.20.0_portable_x64.zip`, extract and run\n",
+  "version": "0.20.1",
+  "tag": "v0.20.1",
+  "published_at": "2026-11-12T11:36:18Z",
+  "release_notes": "### 修复\n- 中文界面下对局结束页的海克斯强化名称显示为英文\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.20.1_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.20.1_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.20.1_portable_x64.zip`, extract and run\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.20.0/Futaba_v0.20.0_x64_installer.exe",
-    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.20.0/Futaba_v0.20.0_portable_x64.exe",
-    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.20.0/Futaba_v0.20.0_portable_x64.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.20.1/Futaba_v0.20.1_x64_installer.exe",
+    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.20.1/Futaba_v0.20.1_portable_x64.exe",
+    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.20.1/Futaba_v0.20.1_portable_x64.zip"
   }
 }

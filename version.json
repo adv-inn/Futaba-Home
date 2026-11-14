@@ -1,11 +1,11 @@
 {
-  "version": "0.20.2",
-  "tag": "v0.20.2",
-  "published_at": "2026-11-12T22:47:48Z",
-  "release_notes": "### 修复\n- 自动抢英雄只在 Futaba 启动后的第一局生效\n- 4K 等高分辨率下偶发无法识别海克斯强化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.20.2_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.20.2_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.20.2_portable_x64.zip`, extract and run\n",
+  "version": "0.21.0",
+  "tag": "v0.21.0",
+  "published_at": "2026-11-14T22:07:51Z",
+  "release_notes": "### 新功能\n- 海斗数据新增「命运之武器」页：按选取率列出当前英雄第一件传说装备的选择，也可自选英雄\n- 常用英雄新增「海克斯大乱斗」列表，未设置时沿用极地大乱斗列表\n\n### 优化\n- 自动选用锁定等待由 2 秒缩短为 1 秒\n\n### 修复\n- 修复海克斯大乱斗 / 极地大乱斗中自动选用常用英雄不生效\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.21.0_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.21.0_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.21.0_portable_x64.zip`, extract and run\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.20.2/Futaba_v0.20.2_x64_installer.exe",
-    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.20.2/Futaba_v0.20.2_portable_x64.exe",
-    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.20.2/Futaba_v0.20.2_portable_x64.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.21.0/Futaba_v0.21.0_x64_installer.exe",
+    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.21.0/Futaba_v0.21.0_portable_x64.exe",
+    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.21.0/Futaba_v0.21.0_portable_x64.zip"
   }
 }

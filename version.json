@@ -1,11 +1,11 @@
 {
-  "version": "0.22.0",
-  "tag": "v0.22.0",
-  "published_at": "2026-11-18T08:22:55Z",
-  "release_notes": "### 新功能\n- 海克斯大乱斗：对局中按当前装备推荐「下一件」与完整出装路线，选中海克斯后弹出推荐提示\n- 对局浮窗新增独立的「海斗出装」标签页，与 AI 推荐分开\n- 强化出装计算器新增综合评分与核心装标记，对局中跟随已选强化并排除已购买的装备\n- 海克斯识别浮窗：弹出的强化能与已选强化组成推荐组合时高亮提示\n\n### 优化\n- 简洁深色主题换用石墨灰与克莱因蓝，高亮颜色更柔和统一\n- Persona 5 主题重做：全新的黑红剧场风造型\n- 对局浮窗界面与布局优化，标签页按对局类型自动调整\n- 海斗英雄详情的出装区自适应排版\n- 更新镜像新增线路，自动选择最快的\n\n### 修复\n- 安装 / 卸载遇到「无法终止 Futaba」时不再直接中止，改为请求权限或提示重试\n- 界面文字不再会被拖选或全选\n- 补齐重连等对局阶段的文案\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.22.0_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.22.0_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.22.0_portable_x64.zip`, extract and run\n",
+  "version": "0.22.1",
+  "tag": "v0.22.1",
+  "published_at": "2026-11-18T13:58:20Z",
+  "release_notes": "### 优化\n- 海斗数据页的强化出装计算器最多可选 6 个强化（原为 4 个），局内同步不再丢掉第 5、6 个\n\n### 修复\n- 海克斯识别：21 级的额外强化选取现在也会触发识别\n- 战绩卡片、对局详情和分享图不再显示名称为空的强化\n\n### 其他\n- 安全性与稳定性加固\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.22.1_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.22.1_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.22.1_portable_x64.zip`, extract and run\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.22.0/Futaba_v0.22.0_x64_installer.exe",
-    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.22.0/Futaba_v0.22.0_portable_x64.exe",
-    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.22.0/Futaba_v0.22.0_portable_x64.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.22.1/Futaba_v0.22.1_x64_installer.exe",
+    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.22.1/Futaba_v0.22.1_portable_x64.exe",
+    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.22.1/Futaba_v0.22.1_portable_x64.zip"
   }
 }

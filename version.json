@@ -1,11 +1,11 @@
 {
-  "version": "0.22.2",
-  "tag": "v0.22.2",
-  "published_at": "2026-11-19T11:01:33Z",
-  "release_notes": "### 修复\n- 海克斯识别：特殊事件下出现 4 张海克斯卡时，每张卡都能显示数据面板并被识别（此前只有第 1、3 张）\n- 海克斯大乱斗：交换期池中出现排在更前的常用英雄时，现在能可靠地自动换取\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.22.2_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.22.2_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.22.2_portable_x64.zip`, extract and run\n",
+  "version": "0.23.0",
+  "tag": "v0.23.0",
+  "published_at": "2026-11-25T13:12:13Z",
+  "release_notes": "### 新功能\n- 房间页好友私聊提醒：好友列表关闭时也会弹出消息提示，点击直达聊天，好友按钮显示未读数\n- 多人分享图横幅展示所有选中玩家的原画；敌我同框时改为左右对抗（VS）布局\n\n### 优化\n- 多人分享图玩家 ID 按阵营着色（我方蓝、对方红）\n\n### 修复\n- 修复对局结束后立即分享时，分享图缺少单杀标签\n- 修复对局浮窗唤出时「海斗出装」标签页延迟出现\n- 修复多人分享未选择自己时，横幅仍显示自己的原画\n\n### 其他\n- 代码质量与稳定性优化\n\n## 📥 Installation\n\n### Windows\n- **Installer**: Download `Futaba_v0.23.0_x64_installer.exe` and install\n- **Portable EXE**: Download `Futaba_v0.23.0_portable_x64.exe` directly\n- **Portable ZIP**: Download `Futaba_v0.23.0_portable_x64.zip`, extract and run\n",
   "download": {
-    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.22.2/Futaba_v0.22.2_x64_installer.exe",
-    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.22.2/Futaba_v0.22.2_portable_x64.exe",
-    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.22.2/Futaba_v0.22.2_portable_x64.zip"
+    "installer": "https://github.com/adv-inn/futaba/releases/download/v0.23.0/Futaba_v0.23.0_x64_installer.exe",
+    "portable_exe": "https://github.com/adv-inn/futaba/releases/download/v0.23.0/Futaba_v0.23.0_portable_x64.exe",
+    "portable_zip": "https://github.com/adv-inn/futaba/releases/download/v0.23.0/Futaba_v0.23.0_portable_x64.zip"
   }
 }

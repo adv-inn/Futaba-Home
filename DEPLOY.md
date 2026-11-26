@@ -40,6 +40,10 @@ clone 本仓库、改文件、push 更新。它们是纯静态数据，不需要
 | `update.json` | Tauri OTA 自动更新（`tauri.conf.json` 的 `endpoints`）|
 | `version.json` | 应用内更新提示与手动下载引导（`update_service.rs`）|
 
+`stats.json`（首页「累计下载」）不由 publish 写入，而是本仓库的 `stats.yml` 每 6 小时
+汇总一次 `adv-inn/futaba` 全部版本 .exe / .zip 的下载数，数字有变化才提交。
+可手动触发：`gh workflow run stats.yml -R adv-inn/Futaba-Home`。
+
 ## 应急：手动发布某个版本
 
 当 publish 工作流的部署步骤失败（如 Actions 故障）时，可手动补：

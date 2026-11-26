@@ -1,0 +1,69 @@
+name: Update download stats
+
+# 把 adv-inn/futaba 所有版本 .exe / .zip 资产的累计下载数写进 stats.json，供首页下载卡片读取。
+# 为什么不在浏览器里直接调 GitHub API：匿名额度每 IP 每小时 60 次，同一出口 IP 的访客共用，
+# 国内访问 api.github.com 也不稳定；用完 / 连不上时统计行就整行消失。
+# 只在数字变化时提交，避免空提交。
+
+on:
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: download-stats
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Sum release downloads
+        id: sum
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          total=$(gh api --paginate 'repos/adv-inn/futaba/releases?per_page=100' \
+            --jq '[.[].assets[] | select(.name | ascii_downcase | endswith(".exe") or endswith(".zip")) | .download_count] | add // 0' \
+            | awk '{ s += $1 } END { print s + 0 }')
+          old=$(jq -r '.downloads // empty' stats.json 2>/dev/null || true)
+          echo "downloads: ${old:-none} -> ${total}"
+          if [ "$total" = "0" ]; then
+            echo "::error::累计下载数为 0，疑似 API 返回异常，不写入"
+            exit 1
+          fi
+          if [ "$total" = "$old" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          printf '{\n  "downloads": %s,\n  "updated_at": "%s"\n}\n' \
+            "$total" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > stats.json
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Commit and push
+        if: steps.sum.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add stats.json
+          git commit -m "chore: update download stats"
+          # publish 工作流可能同时往 main 推 version.json，被拒就 rebase 后重试
+          for i in 1 2 3; do
+            git push && exit 0
+            git pull --rebase origin main
+          done
+          exit 1
+
+      # GITHUB_TOKEN 的推送不一定触发 Pages（legacy 模式）构建，显式请求一次
+      - name: Request Pages build
+        if: steps.sum.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds" --silent

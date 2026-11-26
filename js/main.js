@@ -340,9 +340,11 @@
       });
   }
 
-  // ---- Download count (GitHub Releases API, all versions summed) ----
+  // ---- Download count ----
+  // stats.json is refreshed every 6h by .github/workflows/stats.yml (sum of all .exe / .zip
+  // release assets). Calling the GitHub API from the browser hit the 60/h-per-IP anonymous
+  // limit and is unreliable from China; when it failed, the whole line disappeared.
 
-  var RELEASES_API = 'https://api.github.com/repos/adv-inn/futaba/releases?per_page=100';
   var totalDownloads = null;
 
   function applyDownloadCount(lang) {
@@ -356,23 +358,20 @@
   }
 
   function loadDownloadCount() {
-    return fetch(RELEASES_API, { headers: { Accept: 'application/vnd.github+json' } })
+    var cacheKey = Math.floor(Date.now() / 3600000);
+    return fetch('./stats.json?t=' + cacheKey, { cache: 'no-cache' })
       .then(function (r) {
         if (!r.ok) throw new Error('HTTP ' + r.status);
         return r.json();
       })
-      .then(function (releases) {
-        totalDownloads = releases.reduce(function (sum, rel) {
-          return sum + (rel.assets || []).reduce(function (s, a) {
-            return /\.(exe|zip)$/i.test(a.name) ? s + a.download_count : s;
-          }, 0);
-        }, 0);
+      .then(function (data) {
+        totalDownloads = typeof data.downloads === 'number' ? data.downloads : null;
         applyDownloadCount();
       })
       .catch(function (err) {
         // Stat line stays hidden; the card works fine without it.
         // eslint-disable-next-line no-console
-        console.warn('[futaba-home] releases API load failed:', err);
+        console.warn('[futaba-home] stats.json load failed:', err);
       });
   }
 

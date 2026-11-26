@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Futaba</title>
-  <meta name="description" content="Futaba — 一款使用 Tauri 开发的支持双端操作的英雄联盟客户端，简洁，高效。海克斯强化 OCR 识别、OP.GG 深度集成、移动端扫码操控、AI 战术分析与游戏内悬浮窗。" />
+  <meta name="description" content="Futaba — 一款使用 Tauri 开发的支持双端操作的英雄联盟客户端，简洁，高效。海克斯强化 OCR 识别、选人客户端浮窗、OP.GG 与海克斯大乱斗数据、玩家红黑榜、移动端扫码操控、AI 战术分析与游戏内悬浮窗。" />
 
   <!-- FOUC Prevention: apply theme before any rendering -->
   <script>
@@ -18,7 +18,7 @@
         r.style.backgroundColor = '#f8fafc';
       } else if (t === 'clean-dark') {
         r.className = 'theme-clean dark';
-        r.style.backgroundColor = '#0f172a';
+        r.style.backgroundColor = '#131519';
       } else {
         r.className = 'theme-persona5';
         r.style.backgroundColor = '#0d0d0d';
@@ -63,7 +63,7 @@
       <!-- Logo + Title — fixed min-h to prevent layout shift across fonts -->
       <div class="mb-6 min-h-[200px] sm:min-h-[230px] flex flex-col justify-center">
         <img src="./assets/logo.png" alt="Futaba Logo" class="w-20 h-20 mx-auto rounded-2xl mb-5" />
-        <h1 class="p5-title clean-title text-4xl sm:text-5xl md:text-6xl mb-3 p5-glitch" data-text="FUTABA">
+        <h1 class="p5-title clean-title text-4xl sm:text-5xl md:text-6xl mb-3">
           FUTABA
         </h1>
         <p class="p5-subtitle clean-subtitle text-base sm:text-lg max-w-xl mx-auto" data-i18n="hero.subtitle">
@@ -76,7 +76,7 @@
         <div class="download-card" id="downloadCard">
           <!-- Mirror Switcher -->
           <div class="download-mirror-row">
-            <span class="download-mirror-label" data-i18n="download.mirror">镜像源</span>
+            <span class="download-mirror-label" data-i18n="download.mirror">下载源</span>
             <div class="mirror-switcher" id="mirrorSwitcher" role="tablist">
               <button type="button" data-mirror="github" class="active" role="tab" aria-selected="true">
                 <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
@@ -86,17 +86,36 @@
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 <span data-i18n="download.mirror.ghproxy">国内镜像</span>
               </button>
+              <button type="button" data-mirror="lanzou" role="tab" aria-selected="false">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+                <span data-i18n="download.mirror.lanzou">蓝奏云</span>
+              </button>
             </div>
+          </div>
+
+          <!-- Mirror line picker (国内镜像 only): speed-tested like the app's OTA mirror -->
+          <div class="download-line-row">
+            <span class="download-mirror-label" data-i18n="download.line">线路</span>
+            <select id="mirrorLine" class="download-line-select" aria-label="Mirror line"></select>
           </div>
 
           <!-- Primary Download Button -->
           <a id="downloadPrimary" href="https://github.com/adv-inn/futaba/releases" class="p5-button clean-button download-primary" data-asset="installer">
             <svg class="w-5 h-5 inline-block -mt-0.5 mr-1.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/></svg>
             <span>
-              <span data-i18n="download.installer">下载安装版</span>
+              <span class="download-label-default" data-i18n="download.installer">下载安装版</span>
+              <span class="download-label-lanzou" data-i18n="download.lanzou.open">前往蓝奏云下载</span>
               <span class="download-version-tag" id="downloadVersion">v…</span>
             </span>
           </a>
+
+          <!-- Lanzou password (蓝奏云 only) -->
+          <div class="download-lanzou-row">
+            <span data-i18n="download.lanzou.password">提取密码</span>
+            <code class="download-lanzou-code" id="lanzouPassword">4zy4</code>
+            <button type="button" class="download-lanzou-copy" id="lanzouCopy" data-i18n="download.lanzou.copy">复制</button>
+            <span class="download-lanzou-hint" data-i18n="download.lanzou.hint">国内直连，速度较慢</span>
+          </div>
 
           <!-- Secondary Download Options -->
           <div class="download-secondary-row">
@@ -164,7 +183,7 @@
       <div class="text-center mb-16 scroll-reveal">
         <h2 class="p5-section-title clean-section-title text-3xl sm:text-4xl mb-4" data-i18n="highlights.title">核心功能</h2>
         <p class="p5-subtitle clean-subtitle mt-6 text-base max-w-2xl mx-auto" data-i18n="highlights.subtitle">
-          Futaba 最想让你看到的三件事
+          Futaba 最想让你看到的四件事
         </p>
       </div>
 
@@ -175,12 +194,12 @@
             <p class="highlight-kicker">01 · Hextech OCR</p>
             <h3 class="highlight-title" data-i18n="highlight.hextech.title">海克斯强化识别</h3>
             <p class="highlight-desc" data-i18n="highlight.hextech.desc">
-              海克斯大乱斗与斗魂竞技场的强化选项，客户端 API 根本不提供。Futaba 直接截屏 OCR 识别三张卡牌，匹配 OP.GG 数据，把梯队、选取率和强度叠在每张卡牌下方，选强化不再靠猜。
+              海克斯大乱斗与斗魂竞技场的强化选项，客户端 API 根本不提供。Futaba 直接截屏识别每张强化卡，把梯度、胜率、本英雄排名、适配装备与通用搭配叠在卡牌下方，选强化不再靠猜。
             </p>
             <ul class="highlight-points">
               <li data-i18n="highlight.hextech.p1">纯屏幕识别，不读取游戏内存，不改游戏文件</li>
-              <li data-i18n="highlight.hextech.p2">三张卡牌各自独立浮窗，位置跟随卡牌</li>
-              <li data-i18n="highlight.hextech.p3">支持海克斯大乱斗与斗魂竞技场</li>
+              <li data-i18n="highlight.hextech.p2">高精度 OCR 引擎内置，开箱即用，支持海克斯大乱斗与斗魂竞技场</li>
+              <li data-i18n="highlight.hextech.p3">能与已选强化组成推荐组合的卡牌高亮提示</li>
             </ul>
           </div>
           <div class="highlight-media">
@@ -190,18 +209,39 @@
           </div>
         </div>
 
-        <!-- 2. OP.GG -->
+        <!-- 2. Champ select overlay on the LoL client -->
         <div class="highlight-row scroll-reveal">
           <div class="highlight-text">
-            <p class="highlight-kicker">02 · OP.GG</p>
-            <h3 class="highlight-title" data-i18n="highlight.opgg.title">OP.GG 深度兼容</h3>
+            <p class="highlight-kicker">02 · Champ Select</p>
+            <h3 class="highlight-title" data-i18n="highlight.champselect.title">选人客户端浮窗</h3>
+            <p class="highlight-desc" data-i18n="highlight.champselect.desc">
+              选人阶段不用切出客户端。Futaba 直接在英雄联盟客户端上叠加推荐面板：英雄梯度与胜率、召唤师技能、技能主次、核心出装和海克斯强化，看一眼就能定下这局怎么打。
+            </p>
+            <ul class="highlight-points">
+              <li data-i18n="highlight.champselect.p1">召唤师技能一键应用，核心出装一键写入装备集</li>
+              <li data-i18n="highlight.champselect.p2">海克斯大乱斗数据与 OP.GG 随时切换</li>
+              <li data-i18n="highlight.champselect.p3">可选英雄的梯度、胜率与队友红黑榜徽章同步显示</li>
+            </ul>
+          </div>
+          <div class="highlight-media">
+            <div class="showcase-img">
+              <img src="./assets/client-champ-select.jpg" alt="选人客户端浮窗" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. OP.GG + Hextech ARAM data -->
+        <div class="highlight-row scroll-reveal">
+          <div class="highlight-text">
+            <p class="highlight-kicker">03 · OP.GG</p>
+            <h3 class="highlight-title" data-i18n="highlight.opgg.title">OP.GG 与海斗数据</h3>
             <p class="highlight-desc" data-i18n="highlight.opgg.desc">
-              排位、大乱斗、海克斯大乱斗、斗魂竞技场，全模式接入 OP.GG 实时数据。英雄梯队、胜率、出装、符文、海克斯强化推荐，选人阶段一键应用，进游戏直接开打。
+              排位、大乱斗、斗魂竞技场全模式接入 OP.GG 实时数据；海克斯大乱斗额外接入专属数据站，英雄、强化、装备榜与强化组合一应俱全。选人阶段一键应用，进游戏直接开打。
             </p>
             <ul class="highlight-points">
               <li data-i18n="highlight.opgg.p1">版本强势出装 / 符文 / 召唤师技能自动应用</li>
               <li data-i18n="highlight.opgg.p2">经典模式 Counter 对位，大乱斗 ARAM 平衡调整</li>
-              <li data-i18n="highlight.opgg.p3">海克斯强化按稀有度分级，S / A 梯队一目了然</li>
+              <li data-i18n="highlight.opgg.p3">强化出装计算器：按已选强化推荐装备，对局中跟随强化推荐下一件</li>
             </ul>
           </div>
           <div class="highlight-media">
@@ -211,10 +251,10 @@
           </div>
         </div>
 
-        <!-- 3. Mobile -->
+        <!-- 4. Mobile -->
         <div class="highlight-row scroll-reveal">
           <div class="highlight-text">
-            <p class="highlight-kicker">03 · Mobile</p>
+            <p class="highlight-kicker">04 · Mobile</p>
             <h3 class="highlight-title" data-i18n="highlight.mobile.title">移动端适配</h3>
             <p class="highlight-desc" data-i18n="highlight.mobile.desc">
               局域网开启数据共享，手机扫码即可打开 Futaba Mobile。接受对局、抢英雄、看出装、查海克斯推荐，离开电脑也不耽误。
@@ -253,52 +293,52 @@
         </p>
       </div>
 
-      <!-- Feature Cards Grid (3x3) -->
+      <!-- Feature Cards Grid (3x4) -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
 
         <!-- Feature 1: Auto Accept -->
         <div class="p5-card clean-card p-6 scroll-reveal delay-1">
           <div class="text-3xl mb-4">
-            <svg class="w-10 h-10" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <svg class="w-10 h-10" style="color: var(--accent-fg);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
-          <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);" data-i18n="feature.accept.title">自动接受对局</h3>
+          <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);" data-i18n="feature.accept.title">自动接受与选用</h3>
           <p style="color: var(--text-secondary);" class="text-sm leading-relaxed" data-i18n="feature.accept.desc">
-            匹配成功后自动接受对局，无需手动操作，再也不会错过匹配
+            匹配成功自动接受；选人阶段按常用英雄列表自动选用，大乱斗交换期自动换取更靠前的常用英雄
           </p>
         </div>
 
         <!-- Feature 2: Match History -->
         <div class="p5-card clean-card p-6 scroll-reveal delay-2">
           <div class="text-3xl mb-4">
-            <svg class="w-10 h-10" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <svg class="w-10 h-10" style="color: var(--accent-fg);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z" />
             </svg>
           </div>
           <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);" data-i18n="feature.history.title">战绩查询</h3>
           <p style="color: var(--text-secondary);" class="text-sm leading-relaxed" data-i18n="feature.history.desc">
-            查看详细对局历史记录，KDA、伤害、装备一应俱全，还能一键生成战绩分享图
+            查看详细对局历史，KDA、伤害、装备一应俱全；一键生成分享图，带 MVP / SVP 评分与高光标签
           </p>
         </div>
 
         <!-- Feature 3: Friends -->
         <div class="p5-card clean-card p-6 scroll-reveal delay-3">
           <div class="text-3xl mb-4">
-            <svg class="w-10 h-10" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <svg class="w-10 h-10" style="color: var(--accent-fg);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
             </svg>
           </div>
           <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);" data-i18n="feature.friends.title">好友交互</h3>
           <p style="color: var(--text-secondary);" class="text-sm leading-relaxed" data-i18n="feature.friends.desc">
-            聊天、邀请好友组队、预约邀请，社交功能一应俱全
+            聊天、邀请组队、处理好友申请；好友私聊即时弹出提醒，好友按钮显示未读数
           </p>
         </div>
 
         <!-- Feature 4: OP.GG Integration -->
         <div class="p5-card clean-card p-6 scroll-reveal delay-1">
           <div class="text-3xl mb-4">
-            <svg class="w-10 h-10" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <svg class="w-10 h-10" style="color: var(--accent-fg);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
             </svg>
           </div>
@@ -311,7 +351,7 @@
         <!-- Feature 5: Counter Pick -->
         <div class="p5-card clean-card p-6 scroll-reveal delay-2">
           <div class="text-3xl mb-4">
-            <svg class="w-10 h-10" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <svg class="w-10 h-10" style="color: var(--accent-fg);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971z" />
             </svg>
           </div>
@@ -324,7 +364,7 @@
         <!-- Feature 6: AI Analysis -->
         <div class="p5-card clean-card p-6 scroll-reveal delay-3">
           <div class="text-3xl mb-4">
-            <svg class="w-10 h-10" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <svg class="w-10 h-10" style="color: var(--accent-fg);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
             </svg>
           </div>
@@ -337,40 +377,80 @@
         <!-- Feature 7: Hextech OCR -->
         <div class="p5-card clean-card p-6 scroll-reveal delay-1">
           <div class="text-3xl mb-4">
-            <svg class="w-10 h-10" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <svg class="w-10 h-10" style="color: var(--accent-fg);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
           </div>
           <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);" data-i18n="feature.hextech.title">海克斯识别</h3>
           <p style="color: var(--text-secondary);" class="text-sm leading-relaxed" data-i18n="feature.hextech.desc">
-            海克斯大乱斗 / 斗魂竞技场开局截屏 OCR 识别三张强化卡，叠加 OP.GG 梯队与选取率
+            截屏识别海克斯大乱斗 / 斗魂竞技场的强化卡，叠加梯度、胜率与搭配推荐，OCR 引擎内置开箱即用
           </p>
         </div>
 
         <!-- Feature 8: In-Game Overlay -->
         <div class="p5-card clean-card p-6 scroll-reveal delay-2">
           <div class="text-3xl mb-4">
-            <svg class="w-10 h-10" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <svg class="w-10 h-10" style="color: var(--accent-fg);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
             </svg>
           </div>
           <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);" data-i18n="feature.overlay.title">游戏内悬浮窗</h3>
           <p style="color: var(--text-secondary);" class="text-sm leading-relaxed" data-i18n="feature.overlay.desc">
-            透明无边框悬浮窗覆盖在游戏画面上，快捷键一键切换，不影响游戏操作
+            透明悬浮窗覆盖游戏画面，快捷键一键切换；海克斯大乱斗按当前装备推荐下一件与完整出装路线
           </p>
         </div>
 
         <!-- Feature 9: Mobile Support -->
         <div class="p5-card clean-card p-6 scroll-reveal delay-3">
           <div class="text-3xl mb-4">
-            <svg class="w-10 h-10" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <svg class="w-10 h-10" style="color: var(--accent-fg);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
             </svg>
           </div>
           <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);" data-i18n="feature.mobile.title">移动端支持</h3>
           <p style="color: var(--text-secondary);" class="text-sm leading-relaxed" data-i18n="feature.mobile.desc">
             局域网数据共享，手机扫码即可操控选人、查看出装和海克斯推荐
+          </p>
+        </div>
+
+        <!-- Feature 10: Champ Select Overlay -->
+        <div class="p5-card clean-card p-6 scroll-reveal delay-1">
+          <div class="text-3xl mb-4">
+            <svg class="w-10 h-10" style="color: var(--accent-fg);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 002.25 2.25h13.5A2.25 2.25 0 0021 18V8.25m-18 0V6a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 6v2.25m-18 0h18M5.25 6h.008v.008H5.25V6zM7.5 6h.008v.008H7.5V6zm2.25 0h.008v.008H9.75V6z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);" data-i18n="feature.champselect.title">选人客户端浮窗</h3>
+          <p style="color: var(--text-secondary);" class="text-sm leading-relaxed" data-i18n="feature.champselect.desc">
+            选人阶段直接在客户端上叠加英雄梯度、胜率与推荐面板，召唤师技能与装备集一键应用
+          </p>
+        </div>
+
+        <!-- Feature 11: Player List -->
+        <div class="p5-card clean-card p-6 scroll-reveal delay-2">
+          <div class="text-3xl mb-4">
+            <svg class="w-10 h-10" style="color: var(--accent-fg);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);" data-i18n="feature.playerlist.title">玩家红黑榜</h3>
+          <p style="color: var(--text-secondary);" class="text-sm leading-relaxed" data-i18n="feature.playerlist.desc">
+            对局结束或翻战绩时右键标记玩家，附理由与快捷标签；再次遇到时房间页和选人界面显示红黑徽章
+          </p>
+        </div>
+
+        <!-- Feature 12: Hextech ARAM Data -->
+        <div class="p5-card clean-card p-6 scroll-reveal delay-3">
+          <div class="text-3xl mb-4">
+            <svg class="w-10 h-10" style="color: var(--accent-fg);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);" data-i18n="feature.mayhem.title">海斗数据</h3>
+          <p style="color: var(--text-secondary);" class="text-sm leading-relaxed" data-i18n="feature.mayhem.desc">
+            海克斯大乱斗专属数据页：英雄 / 强化 / 装备榜、强化组合、命运之武器，以及多强化组合的出装计算器
           </p>
         </div>
 
@@ -411,7 +491,7 @@
       <div class="text-center mb-12 scroll-reveal">
         <h2 class="p5-section-title clean-section-title text-3xl sm:text-4xl mb-4" data-i18n="showcase.share.title">战绩分享</h2>
         <p class="p5-subtitle clean-subtitle mt-6 text-base max-w-2xl mx-auto" data-i18n="showcase.share.subtitle">
-          对局结束一键生成分享图，单人战绩或多人同框，带皮肤原画、海克斯选择与队内占比
+          对局结束一键生成分享图，单人战绩或多人同框，带皮肤原画、MVP / SVP 评分、高光标签与海克斯选择；敌我同框自动切换 VS 对抗布局
         </p>
       </div>
       <div class="share-grid scroll-reveal delay-1">
@@ -581,10 +661,16 @@
       <p class="text-xs mb-2" style="color: var(--text-secondary); opacity: 0.8;">
         <span data-i18n="footer.mirror_thanks">国内镜像加速由</span>
         <a href="https://gh-proxy.com/" target="_blank" rel="noopener noreferrer"
-           class="footer-mirror-link" style="color: var(--accent);">gh-proxy</a>
+           class="footer-mirror-link" style="color: var(--accent-fg);">gh-proxy</a>
+        <span data-i18n="footer.mirror_thanks_and">与</span>
+        <a href="https://xget.xi-xu.me/" target="_blank" rel="noopener noreferrer"
+           class="footer-mirror-link" style="color: var(--accent-fg);">Xget</a>
         <span data-i18n="footer.mirror_thanks_suffix">提供，感谢开源项目</span>
         <a href="https://github.com/hunshcn/gh-proxy" target="_blank" rel="noopener noreferrer"
-           class="footer-mirror-link" style="color: var(--accent);">hunshcn/gh-proxy</a>
+           class="footer-mirror-link" style="color: var(--accent-fg);">hunshcn/gh-proxy</a>
+        <span aria-hidden="true">·</span>
+        <a href="https://github.com/xixu-me/Xget" target="_blank" rel="noopener noreferrer"
+           class="footer-mirror-link" style="color: var(--accent-fg);">xixu-me/Xget</a>
       </p>
 
       <!-- Version -->

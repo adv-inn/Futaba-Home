@@ -71,205 +71,263 @@ footer {
   transition: border-color 0.5s ease;
 }
 
+/* Theater style, mirrors the app (futaba_agent src/index.css):
+   red #e60012 is only for solid fills; #ff4d5a is its foreground form (text / borders).
+   Content is never skewed (skewed text blurs) — slants, cut corners and hard shadows
+   are drawn on pseudo-element plates behind it. */
 .theme-persona5 {
+  --p5-red: #e60012;
+  --p5-red-light: #ff2a3a;
+  --p5-black-light: #1a1a1a;
   --bg-primary: #0d0d0d;
   --bg-secondary: #1a1a1a;
   --bg-card: #1a1a1a;
   --text-primary: #ffffff;
   --text-secondary: #cccccc;
-  --accent: #ff0000;
-  --accent-hover: #ff3333;
+  --accent: var(--p5-red);
+  --accent-hover: var(--p5-red-light);
+  --accent-fg: #ff4d5a;
   --border: #333333;
+  --p5-cut: 12px;
+  --p5-slant: 6px;
+  --p5-cut-path: polygon(
+    var(--p5-cut) 0,
+    100% 0,
+    100% calc(100% - var(--p5-cut)),
+    calc(100% - var(--p5-cut)) 100%,
+    0 100%,
+    0 var(--p5-cut)
+  );
 
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  font-family: 'Bebas Neue', Impact, sans-serif;
+  /* Bebas Neue has no lowercase and no CJK: display font only, Inter for body text */
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Canvas: dots fading in toward the bottom-right + one red slash */
+.theme-persona5 body {
+  background:
+    linear-gradient(
+      115deg,
+      transparent 91%,
+      var(--p5-red) 91% 91.7%,
+      transparent 91.7% 92.5%,
+      rgb(255 255 255 / 0.45) 92.5% 92.7%,
+      transparent 92.7%
+    ),
+    linear-gradient(115deg, #0d0d0d 45%, transparent 90%),
+    radial-gradient(circle, rgb(255 255 255 / 0.16) 1.1px, transparent 1.6px) 0 0 / 12px 12px,
+    #0d0d0d;
+  background-attachment: fixed;
 }
 
 .theme-persona5 ::-webkit-scrollbar-thumb {
-  background: #ff0000;
+  background: var(--p5-red);
 }
 
 .theme-persona5 ::-webkit-scrollbar-thumb:hover {
-  background: #ff3333;
+  background: var(--p5-red-light);
 }
 
-
-/* P5 Card */
-.theme-persona5 .p5-card {
-  background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
-  border: 2px solid #ff0000;
-  box-shadow: 4px 4px 0px 0px #ff0000;
-  transform: skewX(-2deg);
-  transition: all 0.2s ease;
-}
-
-.theme-persona5 .p5-card:hover {
-  box-shadow: 6px 6px 0px 0px #ff0000;
-  transform: skewX(-2deg) translateY(-4px);
-}
-
-.theme-persona5 .p5-card > * {
-  transform: skewX(2deg);
-}
-
-/* P5 Button */
+/* ---- Plates: a skewed block + hard shadow behind the element ---- */
+.theme-persona5 .p5-title,
+.theme-persona5 .p5-section-title,
 .theme-persona5 .p5-button {
-  display: inline-block;
-  background: #ff0000;
-  color: #ffffff;
-  border: none;
-  padding: 12px 28px;
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: 1.2rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  text-decoration: none;
-  transform: skewX(-5deg);
-  box-shadow: 4px 4px 0px 0px #000000;
-  transition: all 0.15s ease;
-  cursor: pointer;
+  position: relative;
+  isolation: isolate;
 }
 
-.theme-persona5 .p5-button:hover {
-  background: #ff3333;
-  box-shadow: 6px 6px 0px 0px #000000;
-  transform: skewX(-5deg) translateY(-2px);
+.theme-persona5 .p5-title::before,
+.theme-persona5 .p5-section-title::before,
+.theme-persona5 .p5-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--p5-plate-bg, var(--p5-red));
+  box-shadow: 3px 3px 0 0 var(--p5-plate-shadow, #ffffff);
+  transform: skewX(-12deg);
+  transition: background-color 0.12s ease, box-shadow 0.12s ease;
 }
 
-.theme-persona5 .p5-button:active {
-  box-shadow: 2px 2px 0px 0px #000000;
-  transform: skewX(-5deg) translateY(2px);
-}
-
-.theme-persona5 .p5-button > * {
-  transform: skewX(5deg);
-}
-
-/* P5 Button Outline */
-.theme-persona5 .p5-button-outline {
-  display: inline-block;
-  background: transparent;
-  color: #ff0000;
-  border: 2px solid #ff0000;
-  padding: 12px 28px;
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: 1.2rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  text-decoration: none;
-  transform: skewX(-5deg);
-  transition: all 0.15s ease;
-  cursor: pointer;
-}
-
-.theme-persona5 .p5-button-outline:hover {
-  background: #ff0000;
-  color: #ffffff;
-  transform: skewX(-5deg) translateY(-2px);
-}
-
-.theme-persona5 .p5-button-outline > * {
-  transform: skewX(5deg);
-}
-
-/* P5 Title */
+/* Hero title: white on a red plate, tilted left */
 .theme-persona5 .p5-title {
+  width: fit-content;
+  margin-inline: auto;
+  padding: 0 28px 0 20px;
   font-family: 'Bebas Neue', Impact, sans-serif;
-  letter-spacing: 6px;
+  font-weight: 400;
+  letter-spacing: 4px;
   text-transform: uppercase;
-  color: #ff0000;
-  text-shadow: 3px 3px 0px #000000;
+  color: #ffffff;
+  rotate: -2deg;
+}
+
+.theme-persona5 .p5-title::before {
+  box-shadow: 6px 6px 0 0 #ffffff;
 }
 
 .theme-persona5 .p5-subtitle {
   font-family: 'Bebas Neue', Impact, sans-serif;
   font-size: 1.5rem;
+  line-height: 1.4;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+/* Section title: black on a white plate + red shadow (inverse of the hero title) */
+.theme-persona5 .p5-section-title {
+  --p5-plate-bg: #ffffff;
+  --p5-plate-shadow: var(--p5-red);
+  display: inline-block;
+  padding: 2px 20px 2px 14px;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-weight: 400;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #cccccc;
+  color: #0d0d0d;
 }
 
-/* P5 Section Title */
-.theme-persona5 .p5-section-title {
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: #ff0000;
-  text-shadow: 2px 2px 0px #000000;
+.theme-persona5 .p5-section-title::before {
+  box-shadow: 5px 5px 0 0 var(--p5-red);
+}
+
+/* ---- Panel: cut-corner black plate + white outline + red offset plate.
+   ::after is the plate (corner gradients redraw the outline that clip-path cuts off),
+   ::before the red shadow plate. The element itself has no background / border. ---- */
+.theme-persona5 .p5-card,
+.theme-persona5 .download-card {
   position: relative;
-  display: inline-block;
+  isolation: isolate;
+  transition: translate 0.15s ease;
 }
 
-.theme-persona5 .p5-section-title::after {
+.theme-persona5 .p5-card::before,
+.theme-persona5 .p5-card::after,
+.theme-persona5 .download-card::before,
+.theme-persona5 .download-card::after {
   content: '';
   position: absolute;
-  bottom: -8px;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: #ff0000;
-  transform: skewX(-15deg);
+  inset: 0;
+  clip-path: var(--p5-cut-path);
+  pointer-events: none;
 }
 
-/* P5 Badge */
+.theme-persona5 .p5-card::before,
+.theme-persona5 .download-card::before {
+  z-index: -2;
+  background: var(--p5-red);
+  transform: translate(5px, 5px);
+  transition: transform 0.15s ease;
+}
+
+.theme-persona5 .p5-card::after,
+.theme-persona5 .download-card::after {
+  z-index: -1;
+  border: 2px solid #ffffff;
+  background:
+    linear-gradient(135deg, #ffffff calc(var(--p5-cut) * 0.7071 + 2px), transparent 0) top left /
+      calc(var(--p5-cut) + 6px) calc(var(--p5-cut) + 6px) no-repeat border-box,
+    linear-gradient(315deg, #ffffff calc(var(--p5-cut) * 0.7071 + 2px), transparent 0) bottom right /
+      calc(var(--p5-cut) + 6px) calc(var(--p5-cut) + 6px) no-repeat border-box,
+    var(--p5-black-light);
+}
+
+.theme-persona5 .p5-card:hover {
+  translate: 0 -4px;
+}
+
+.theme-persona5 .p5-card:hover::before {
+  transform: translate(8px, 8px);
+}
+
+/* ---- Primary button: red plate, inverts to a white plate on hover, presses into its shadow ---- */
+.theme-persona5 .p5-button {
+  display: inline-block;
+  padding: 12px 28px;
+  border: none;
+  background: none;
+  color: #ffffff;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: translate 0.12s ease, color 0.12s ease;
+}
+
+.theme-persona5 .p5-button::before {
+  transform: skewX(-10deg);
+  box-shadow: 5px 5px 0 0 #ffffff;
+}
+
+.theme-persona5 .p5-button:hover {
+  color: #0d0d0d;
+}
+
+.theme-persona5 .p5-button:hover::before {
+  background: #ffffff;
+  box-shadow: 5px 5px 0 0 var(--p5-red);
+}
+
+.theme-persona5 .p5-button:active {
+  translate: 3px 3px;
+}
+
+.theme-persona5 .p5-button:active::before {
+  box-shadow: 2px 2px 0 0 var(--p5-red);
+}
+
+/* ---- Secondary button: outline in the foreground red, fills on hover ---- */
+.theme-persona5 .p5-button-outline {
+  display: inline-block;
+  padding: 12px 28px;
+  border: 1px solid var(--accent-fg);
+  background: transparent;
+  color: var(--accent-fg);
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.theme-persona5 .p5-button-outline:hover {
+  border-color: var(--p5-red);
+  background: var(--p5-red);
+  color: #ffffff;
+}
+
+/* ---- Badge: flat row; hover turns the outline white and presses a red edge inside ---- */
 .theme-persona5 .p5-badge {
-  background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
-  border: 2px solid #ff0000;
+  border: 1px solid #424242;
+  background: var(--p5-black-light);
   color: #ffffff;
   font-family: 'Bebas Neue', Impact, sans-serif;
   letter-spacing: 2px;
   text-transform: uppercase;
-  transform: skewX(-3deg);
-  transition: all 0.2s ease;
+  transition: box-shadow 0.12s ease, border-color 0.12s ease;
 }
 
 .theme-persona5 .p5-badge:hover {
-  background: #ff0000;
-  transform: skewX(-3deg) scale(1.05);
+  border-color: #ffffff;
+  box-shadow: inset -4px -4px 0 0 var(--p5-red);
 }
 
-/* P5 Selection */
+/* Slanted solid chips (active tab-like buttons); no border / shadow survives the clip */
+.theme-persona5 .lang-switcher button.active,
+.theme-persona5 .mirror-switcher button.active {
+  clip-path: polygon(var(--p5-slant) 0, 100% 0, calc(100% - var(--p5-slant)) 100%, 0 100%);
+}
+
 .theme-persona5 ::selection {
-  background: #ff0000;
+  background: var(--p5-red);
   color: #ffffff;
-}
-
-/* P5 Glitch effect */
-.theme-persona5 .p5-glitch {
-  position: relative;
-}
-
-.theme-persona5 .p5-glitch::before,
-.theme-persona5 .p5-glitch::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.theme-persona5 .p5-glitch::before {
-  animation: p5-glitch-1 0.3s infinite linear alternate-reverse;
-  color: #ff0000;
-  clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
-}
-
-.theme-persona5 .p5-glitch::after {
-  animation: p5-glitch-2 0.3s infinite linear alternate-reverse;
-  color: #00ffff;
-  clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
-}
-
-@keyframes p5-glitch-1 {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(2px); }
-}
-
-@keyframes p5-glitch-2 {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-2px); }
 }
 
 /* ============================
@@ -284,6 +342,7 @@ footer {
   --text-secondary: #64748b;
   --accent: #3b82f6;
   --accent-hover: #2563eb;
+  --accent-fg: #3b82f6;
   --border: #e2e8f0;
 
   background-color: var(--bg-primary);
@@ -295,15 +354,19 @@ footer {
    CLEAN THEME (DARK)
    ============================ */
 
+/* Graphite + International Klein Blue, same tokens as the app.
+   --accent (#002fa7) is for solid fills only (white text on it); it is too dark to read
+   as text / borders on graphite, so foreground uses go through --accent-fg. */
 .theme-clean.dark {
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --bg-card: #1e293b;
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --accent: #3b82f6;
-  --accent-hover: #60a5fa;
-  --border: #334155;
+  --bg-primary: #131519;
+  --bg-secondary: #1d1f24;
+  --bg-card: #1d1f24;
+  --text-primary: #f1f2f4;
+  --text-secondary: #a1a6af;
+  --accent: #002fa7;
+  --accent-hover: #0b49dc;
+  --accent-fg: #6c9bfb;
+  --border: #2d3037;
 
   background-color: var(--bg-primary);
   color: var(--text-primary);
@@ -341,15 +404,15 @@ footer {
 .theme-clean .clean-button:hover {
   background: var(--accent-hover);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgb(59 130 246 / 0.3);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 30%, transparent);
 }
 
 /* Clean Button Outline */
 .theme-clean .clean-button-outline {
   display: inline-block;
   background: transparent;
-  color: var(--accent);
-  border: 1px solid var(--accent);
+  color: var(--accent-fg);
+  border: 1px solid var(--accent-fg);
   padding: 12px 28px;
   border-radius: 8px;
   font-weight: 600;
@@ -361,6 +424,7 @@ footer {
 
 .theme-clean .clean-button-outline:hover {
   background: var(--accent);
+  border-color: var(--accent);
   color: #ffffff;
 }
 
@@ -390,7 +454,7 @@ footer {
   transform: translateX(-50%);
   width: 48px;
   height: 3px;
-  background: var(--accent);
+  background: var(--accent-fg);
   border-radius: 2px;
 }
 
@@ -405,8 +469,8 @@ footer {
 }
 
 .theme-clean .clean-badge:hover {
-  border-color: var(--accent);
-  box-shadow: 0 4px 12px rgb(59 130 246 / 0.15);
+  border-color: var(--accent-fg);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent-fg) 15%, transparent);
   transform: translateY(-2px);
 }
 
@@ -461,7 +525,7 @@ footer {
 }
 
 .theme-persona5 .lang-switcher button.active {
-  background: #ff0000;
+  background: var(--accent);
   color: #fff;
 }
 
@@ -532,7 +596,7 @@ footer {
 }
 
 .theme-persona5 .hero-decoration {
-  border: 2px solid #ff0000;
+  border: 2px solid var(--accent-fg);
   opacity: 0.15;
   transition: opacity 0.5s ease;
 }
@@ -558,7 +622,7 @@ footer {
   right: 15%;
   width: 60px;
   height: 60px;
-  background: #ff0000;
+  background: var(--accent);
   opacity: 0.08;
   border: none;
   transform: skewX(12deg);
@@ -688,18 +752,18 @@ footer {
 
 .theme-persona5 .cascade-nav {
   background: #1a1a1a;
-  color: #ff0000;
-  border-color: #ff0000;
+  color: var(--accent-fg);
+  border-color: var(--accent-fg);
 }
 
 .theme-persona5 .cascade-nav:hover {
-  background: #ff0000;
+  background: var(--accent);
   color: #ffffff;
 }
 
 .theme-clean .cascade-nav {
   background: var(--bg-card);
-  color: var(--accent);
+  color: var(--accent-fg);
   border-color: var(--border);
   box-shadow: 0 2px 8px rgb(0 0 0 / 0.08);
 }
@@ -713,16 +777,26 @@ footer {
 /* --- Theme-specific styling --- */
 
 /* P5 */
+.theme-persona5 .cascade-card {
+  border-radius: 0;
+}
+
+.theme-persona5 .cascade-card img {
+  border-radius: 0;
+}
+
 .theme-persona5 .cascade-card.active {
-  box-shadow: 6px 6px 0 0 #ff0000;
+  box-shadow: 0 0 0 2px #ffffff, 7px 7px 0 0 var(--accent);
 }
 
 .theme-persona5 .cascade-card:not(.active) {
-  box-shadow: 3px 3px 0 0 rgba(255, 0, 0, 0.3);
+  box-shadow: 4px 4px 0 0 color-mix(in srgb, var(--accent) 40%, transparent);
 }
 
 .theme-persona5 .cascade-label {
-  background: rgba(255, 0, 0, 0.85);
+  border-radius: 0;
+  background: var(--accent);
+  clip-path: polygon(var(--p5-slant) 0, 100% 0, calc(100% - var(--p5-slant)) 100%, 0 100%);
   color: #fff;
   font-family: 'Bebas Neue', Impact, sans-serif;
   letter-spacing: 1.5px;
@@ -738,7 +812,7 @@ footer {
 }
 
 .theme-clean .cascade-label {
-  background: rgba(59, 130, 246, 0.85);
+  background: var(--accent);
   color: #fff;
   font-family: 'Inter', system-ui, sans-serif;
 }
@@ -772,12 +846,13 @@ footer {
 }
 
 .theme-persona5 .showcase-img {
-  border: 2px solid #ff0000;
-  box-shadow: 4px 4px 0px 0px #ff0000;
+  border: 2px solid #ffffff;
+  border-radius: 0;
+  box-shadow: 5px 5px 0 0 var(--accent);
 }
 
 .theme-persona5 .showcase-img:hover {
-  box-shadow: 6px 6px 0px 0px #ff0000;
+  box-shadow: 8px 8px 0 0 var(--accent);
 }
 
 .theme-clean .showcase-img {
@@ -789,12 +864,17 @@ footer {
   box-shadow: 0 8px 24px rgb(0 0 0 / 0.12);
 }
 
-.theme-clean.dark .showcase-img {
-  box-shadow: 0 4px 16px rgb(0 0 0 / 0.25);
-}
-
-.theme-clean.dark .showcase-img:hover {
-  box-shadow: 0 8px 24px rgb(0 0 0 / 0.35);
+/* Dark layers by lightness + hairline borders, no drop shadows (same as the app) */
+.theme-clean.dark .showcase-img,
+.theme-clean.dark .showcase-img:hover,
+.theme-clean.dark .clean-card,
+.theme-clean.dark .clean-card:hover,
+.theme-clean.dark .clean-badge,
+.theme-clean.dark .clean-badge:hover,
+.theme-clean.dark .download-card,
+.theme-clean.dark .lang-switcher,
+.theme-clean.dark .cascade-nav {
+  box-shadow: none;
 }
 
 /* ============================
@@ -839,7 +919,7 @@ footer {
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-fg);
   margin-bottom: 10px;
 }
 
@@ -880,7 +960,7 @@ footer {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--accent);
+  background: var(--accent-fg);
   margin-top: 0.6em;
 }
 
@@ -1053,8 +1133,8 @@ footer {
 }
 
 .download-secondary:hover {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
+  color: var(--accent-fg);
+  border-bottom-color: var(--accent-fg);
 }
 
 .download-divider {
@@ -1090,6 +1170,91 @@ footer {
   margin-top: 4px;
 }
 
+/* --- Channel-specific rows (data-channel set on #downloadCard by JS) --- */
+.download-line-row,
+.download-lanzou-row,
+.download-label-lanzou {
+  display: none;
+}
+
+.download-card[data-channel="ghproxy"] .download-line-row,
+.download-card[data-channel="lanzou"] .download-lanzou-row {
+  display: flex;
+}
+
+.download-card[data-channel="lanzou"] .download-label-lanzou {
+  display: inline;
+}
+
+.download-card[data-channel="lanzou"] .download-label-default,
+.download-card[data-channel="lanzou"] .download-version-tag,
+.download-card[data-channel="lanzou"] .download-secondary-row {
+  display: none;
+}
+
+.download-line-row {
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.download-line-select {
+  flex: 1;
+  min-width: 0;
+  max-width: 290px;
+  padding: 5px 8px;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.download-lanzou-row {
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 6px 8px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.download-lanzou-code {
+  padding: 1px 8px;
+  font-family: ui-monospace, Consolas, monospace;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--text-primary);
+  border: 1px dashed var(--border);
+  border-radius: 4px;
+}
+
+.download-lanzou-copy {
+  padding: 2px 10px;
+  font-family: inherit;
+  font-size: 0.78rem;
+  color: var(--accent-fg);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.download-lanzou-copy:hover {
+  border-color: var(--accent-fg);
+}
+
+.download-lanzou-hint {
+  flex-basis: 100%;
+  text-align: center;
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
 .footer-mirror-link {
   text-decoration: none;
   border-bottom: 1px dashed currentColor;
@@ -1109,10 +1274,6 @@ footer {
   box-shadow: 0 4px 14px rgb(0 0 0 / 0.06);
 }
 
-.theme-clean.dark .download-card {
-  box-shadow: 0 4px 18px rgb(0 0 0 / 0.3);
-}
-
 .theme-clean .mirror-switcher {
   background: var(--bg-primary);
   border: 1px solid var(--border);
@@ -1126,7 +1287,7 @@ footer {
 .theme-clean .mirror-switcher button.active {
   background: var(--accent);
   color: #ffffff;
-  box-shadow: 0 1px 3px rgb(59 130 246 / 0.3);
+  box-shadow: 0 1px 3px color-mix(in srgb, var(--accent) 30%, transparent);
 }
 
 .theme-clean .mirror-switcher button:hover:not(.active) {
@@ -1134,25 +1295,7 @@ footer {
   background: var(--bg-card);
 }
 
-/* --- Persona 5 --- */
-.theme-persona5 .download-card {
-  background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
-  border: 2px solid #ff0000;
-  border-radius: 0;
-  box-shadow: 6px 6px 0px 0px #ff0000;
-  transform: skewX(-2deg);
-}
-
-.theme-persona5 .download-card > * {
-  transform: skewX(2deg);
-}
-
-/* The primary button is itself a P5 button with its own skewX(-5deg);
-   re-apply it so the card's reverse skew doesn't flatten it. */
-.theme-persona5 .download-card > .download-primary {
-  transform: skewX(-5deg);
-}
-
+/* --- Persona 5 (panel plate comes from the shared .p5-card rules) --- */
 .theme-persona5 .download-mirror-label {
   font-family: 'Bebas Neue', Impact, sans-serif;
   letter-spacing: 2px;
@@ -1171,7 +1314,7 @@ footer {
 }
 
 .theme-persona5 .mirror-switcher button.active {
-  background: #ff0000;
+  background: var(--accent);
   color: #ffffff;
 }
 
@@ -1194,14 +1337,33 @@ footer {
 }
 
 .theme-persona5 .download-secondary:hover {
-  color: #ff0000;
-  border-bottom-color: #ff0000;
+  color: var(--accent-fg);
+  border-bottom-color: var(--accent-fg);
 }
 
 .theme-persona5 .download-count {
   font-family: 'Bebas Neue', sans-serif;
   letter-spacing: 1px;
   font-size: 0.95rem;
+}
+
+.theme-persona5 .download-line-select,
+.theme-persona5 .download-lanzou-copy {
+  color: #cccccc;
+  background: #0d0d0d;
+  border-color: #333;
+  border-radius: 0;
+}
+
+.theme-persona5 .download-lanzou-copy:hover {
+  color: #ffffff;
+  border-color: var(--accent-fg);
+}
+
+.theme-persona5 .download-lanzou-code {
+  color: #ffffff;
+  border-color: var(--accent-fg);
+  border-radius: 0;
 }
 
 .theme-persona5 .download-status {

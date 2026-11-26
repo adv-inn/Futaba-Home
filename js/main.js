@@ -434,7 +434,7 @@
       'showcase.app.title': '主程序',
       'showcase.app.subtitle': '启动英雄联盟客户端后，使用 Futaba 接管所有其他功能',
       'showcase.opgg.title': 'OP.GG 集成',
-      'showcase.opgg.subtitle': '自动应用版本强势装备与符文，经典模式展示 Counter 对位推荐，大乱斗展示海克斯强化',
+      'showcase.opgg.subtitle': '自动应用版本强势装备与符文，经典模式展示 Counter 对位推荐；数据面板可开成独立小窗，海克斯大乱斗自动切到海斗数据',
       'showcase.mobile.title': '移动端',
       'showcase.mobile.subtitle': '局域网内扫码访问，接受对局、抢英雄、查出装，拿外卖上厕所也不耽误',
       // Highlights + Share showcase
@@ -522,7 +522,7 @@
       'showcase.app.title': 'Main App',
       'showcase.app.subtitle': 'Launch the LoL client, then let Futaba handle everything else',
       'showcase.opgg.title': 'OP.GG Integration',
-      'showcase.opgg.subtitle': 'Auto-apply meta builds and runes, show counter matchups in Classic mode, augments in ARAM',
+      'showcase.opgg.subtitle': 'Auto-apply meta builds and runes, show counter matchups in Classic mode; open the data panel as a standalone mini window, which switches to ARAM Mayhem data in Hextech ARAM',
       'showcase.mobile.title': 'Mobile',
       'showcase.mobile.subtitle': 'Scan to access on your local network — accept matches, pick champions, and check builds on the go',
       // Highlights + Share showcase
@@ -610,7 +610,7 @@
       'showcase.app.title': 'メインアプリ',
       'showcase.app.subtitle': 'LoLクライアント起動後、Futabaがすべての機能を引き継ぎます',
       'showcase.opgg.title': 'OP.GG 連携',
-      'showcase.opgg.subtitle': 'メタビルドとルーンを自動適用、クラシックモードでカウンター表示、ARAMでオーグメント表示',
+      'showcase.opgg.subtitle': 'メタビルドとルーンを自動適用、クラシックモードでカウンター表示。データパネルは独立ミニウィンドウでも開け、ヘクステック大乱闘では専用データに自動切替',
       'showcase.mobile.title': 'モバイル',
       'showcase.mobile.subtitle': 'LAN内でQRスキャン。対戦承認・チャンピオン選択・ビルド確認を外出先でも',
       // Highlights + Share showcase
